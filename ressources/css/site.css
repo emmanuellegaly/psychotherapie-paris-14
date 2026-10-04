@@ -547,3 +547,7 @@ a[href^="tel:"] { white-space: nowrap; }
 .acces-choix[aria-pressed="true"] strong { font-size: 1.5rem; }
 .acces-choix .acces-detail { margin-left: 0; }
 @media (prefers-reduced-motion: reduce) { .acces-choix { transition: none; } }
+/* ---------- Encart des horaires de consultation (Venir) ---------- */
+.encart-horaires { grid-column: 1 / -1; justify-self: center; text-align: center; margin: 0.5rem auto 0; padding: 1.4rem 2.5rem; background: var(--platre); border-top: 2px solid var(--moutarde); max-width: 32rem; width: 100%; }
+.encart-horaires__titre { margin: 0 0 0.35rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laiton-texte); }
+.encart-horaires__texte { margin: 0; font-family: var(--titre); font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem); line-height: 1.25; color: var(--nuit); }
