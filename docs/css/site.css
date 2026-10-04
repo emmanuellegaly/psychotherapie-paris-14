@@ -586,3 +586,12 @@ a[href^="tel:"] { white-space: nowrap; }
   font-family: var(--titre); font-style: italic; font-size: 1.12rem; line-height: 1.55; color: var(--ardoise);
 }
 .texte .entretien__fin::before { content: ""; display: block; width: 2.6rem; height: 4px; margin-bottom: 1rem; background: var(--motif-points); }
+
+/* ---------- Infos pratiques (espace d'accueil) : une ligne sobre, séparée par des points ---------- */
+.infos-pratiques { list-style: none; margin: 1rem 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 0; font-size: 0.92rem; color: var(--ardoise); }
+.infos-pratiques li { display: inline-flex; align-items: center; }
+.infos-pratiques li:not(:last-child)::after { content: "·"; margin: 0 0.6rem; color: var(--brun-rouge); font-weight: 700; }
+.texte .infos-pratiques li { padding-left: 0; margin: 0; }
+.texte .infos-pratiques li::before { content: none; }
+.infos-pratiques--sombre { color: var(--pied-texte); }
+.infos-pratiques--sombre li:not(:last-child)::after { color: var(--or-clair); }
