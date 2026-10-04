@@ -513,3 +513,7 @@ a[href^="tel:"] { white-space: nowrap; }
 .infos-pratiques--sombre li:not(:last-child)::after { color: var(--or-clair); }
 .carte-lien-sous { margin: 0.6rem 0 0; font-size: 0.86rem; }
 .carte-lien-sous a { color: var(--nuit); }
+.plan-acces { margin: 0; border: 1px solid var(--filet-carte); border-radius: 4px; overflow: hidden; background: var(--platre); }
+.plan-acces a { display: block; }
+.plan-acces img { display: block; width: 100%; height: auto; }
+.plan-acces a:focus-visible { outline: 3px solid var(--nuit); outline-offset: 2px; }
