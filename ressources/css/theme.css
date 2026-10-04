@@ -1,0 +1,83 @@
+/* =====================================================================
+   THÈME DU SITE — direction « Le seuil » (A1), le SEUL endroit où se règlent
+   couleurs, polices et mesures communes. Toutes les autres feuilles
+   (site.css, accueil.css) n'utilisent que ces variables.
+
+   Couleurs tirées du cabinet : blanc lumière, plâtre, chêne clair, moutarde (canapé,
+   réservée aux boutons), laiton (filets), bleu nuit (texte), bleu nuit de l'accueil.
+   Couleurs du tableau du cabinet, à petites doses : brun-rouge, sable, brun profond.
+   Contrastes mesurés (WCAG AA) : texte bleu nuit sur blanc 15,7:1 ; ardoise 7,8:1 ;
+   laiton foncé (petits textes) 5,2:1 sur blanc, 4,7:1 sur plâtre ; brun-rouge 7,0:1 ;
+   bouton moutarde + texte bleu nuit 6,1:1 ; pied de page : texte 12,9:1, or clair 8,9:1 ;
+   contour des champs de formulaire 3,2:1.
+
+   Polices auto-hébergées (licence OFL, dans /fonts/) :
+   Bodoni Moda (titres) + Albert Sans (texte). Aucun appel à un service extérieur.
+   ===================================================================== */
+
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda-variable-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda-italic-variable-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Albert Sans";
+  src: url("../fonts/albert-sans-variable-latin.woff2") format("woff2");
+  font-weight: 300 700; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* Couleurs du cabinet */
+  --blanc: #FDFCFA;          /* blanc lumière (murs) */
+  --platre: #F4F2ED;         /* plâtre : fonds d'encarts */
+  --chene: #D8B88A;          /* chêne clair (parquet, bibliothèque) */
+  --moutarde: #C29A2A;       /* canapé : fonds de boutons seulement */
+  --moutarde-survol: #D4AE3C;
+  --laiton: #B8975A;         /* filets */
+  --laiton-texte: #8A6516;   /* laiton foncé, lisible sur blanc (petits textes) */
+  --filet: rgba(184, 151, 90, .5);   /* séparateurs en laiton adouci */
+  --nuit: #17203B;           /* bleu nuit : texte et titres */
+  --nuit-accueil: #1A2350;   /* murs de l'espace d'accueil */
+  --ardoise: #4A5068;        /* texte secondaire */
+  --or-clair: #D9BE7A;       /* or sur bleu nuit */
+  --pied-texte: #E4E6EE;
+  --pied-doux: #C9CEDD;
+  --blanc-pur: #FFFFFF;
+  --filet-fort: rgba(184, 151, 90, .55);
+  --filet-doux: rgba(184, 151, 90, .35);
+  --or-filet: rgba(217, 190, 122, .7);       /* soulignés du pied de page */
+  --or-filet-doux: rgba(217, 190, 122, .35);
+  --filet-carte: rgba(184, 151, 90, .7);
+  --points-carte: rgba(150, 58, 38, .32);  /* motif de points sur l’aperçu de la carte */
+  --chambranle: rgba(253, 252, 250, .75);    /* cadre clair sur la photo d'ouverture */
+  --fond-barre: rgba(253, 252, 250, .97);    /* barre de rendez-vous fixe */
+  --ombre: rgba(23, 32, 59, .55);
+  --ombre-tableau: 0 1px 0 rgba(23, 32, 59, .06), 0 18px 40px -24px rgba(58, 23, 18, .45);
+  --fond-champ: #FFFFFF;                     /* champs du formulaire */
+  --bordure-champ: #8C8F9E;                  /* 3,3:1 sur blanc (contraste des contours de champ) */
+
+  /* Couleurs du tableau du cabinet (détails graphiques, à doser) */
+  --brun-rouge: #963A26;
+  --sable: #E2B48C;
+  --brun-profond: #3A1712;
+
+  /* Polices */
+  --titre: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --texte: "Albert Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Mesures */
+  --gouttiere: clamp(16px, 4.5vw, 64px);
+  --largeur: 1360px;
+  --largeur-page: 1180px;    /* pages intérieures */
+  --largeur-texte: 40rem;    /* colonne de lecture */
+  --espace-section: clamp(4.5rem, 10vw, 9.5rem);
+
+  /* Motifs du tableau : fil de points et lignes parallèles */
+  --motif-points: radial-gradient(circle, var(--brun-rouge) 1.3px, transparent 1.6px) 0 50% / 6.5px 4px repeat-x;
+  --motif-lignes: repeating-linear-gradient(135deg, var(--brun-rouge) 0 2px, transparent 2px 7px);
+}

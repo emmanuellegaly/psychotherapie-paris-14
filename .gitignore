@@ -1,0 +1,32 @@
+# Photos originales : peuvent contenir des données GPS / EXIF. Seules les versions nettoyées
+# de ressources/images/ sont suivies.
+photos-a-integrer/
+
+# Captures d'écran de contrôle (lourdes, utiles seulement en local)
+captures/
+
+# Propositions de page d'accueil (travail préparatoire, environ 35 Mo) : gardées en local,
+# hors du dépôt et hors de docs/ (le dépôt sera public sur GitHub).
+propositions-accueil/
+servir-propositions.js
+
+# Fichiers système
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Documentation et notes INTERNES (le dépôt GitHub est public) : gardées en local uniquement
+LISEZMOI-INTERNE.md
+NOTES-RELECTURE.md
+contenu/_origine/
+# Scripts d'accès, identifiants, sauvegardes, archives : jamais dans ce dépôt
+*.ps1
+!outils/*.ps1
+.env
+*.env
+*.key
+*.pem
+*.bundle
+backup/
+archive*/
+*.zip

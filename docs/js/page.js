@@ -1,0 +1,95 @@
+/* Script commun à toutes les pages (repris de l'accueil A1 et complété) :
+   menu sur téléphone, barre de prise de rendez-vous fixée au défilement, carte Google chargée au clic,
+   vérification du formulaire de contact, apparitions douces. Sans JavaScript, tout reste utilisable. */
+(function () {
+  'use strict';
+
+  // ---- Menu sur téléphone ----
+  var bouton = document.querySelector('.menu-bouton');
+  var nav = document.getElementById('navigation');
+  if (bouton && nav) {
+    bouton.addEventListener('click', function () {
+      var ouvert = bouton.getAttribute('aria-expanded') === 'true';
+      bouton.setAttribute('aria-expanded', String(!ouvert));
+      bouton.textContent = ouvert ? 'Menu' : 'Fermer';
+      nav.classList.toggle('est-ouverte', !ouvert);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && bouton.getAttribute('aria-expanded') === 'true') { bouton.click(); bouton.focus(); }
+    });
+  }
+
+  // ---- Barre de prise de rendez-vous : visible une fois le premier écran (accueil) ou l'en-tête (autres pages) dépassé ----
+  var barre = document.getElementById('barre-rdv');
+  var repere = document.querySelector('.seuil') || document.querySelector('.entete');
+  if (barre && repere) {
+    barre.hidden = false;
+    var visible = null;
+    var verifierBarre = function () {
+      var v = repere.getBoundingClientRect().bottom < 0;
+      if (v === visible) return;
+      visible = v;
+      barre.classList.toggle('est-visible', v);
+      if (v) barre.removeAttribute('inert'); else barre.setAttribute('inert', '');
+    };
+    window.addEventListener('scroll', verifierBarre, { passive: true });
+    window.addEventListener('resize', verifierBarre, { passive: true });
+    verifierBarre();
+  }
+
+  // ---- Carte du cabinet : chargée seulement à la demande (contenu Google) ----
+  document.querySelectorAll('[data-carte]').forEach(function (carte) {
+    var boutonCarte = carte.querySelector('.carte-bouton');
+    if (!boutonCarte) return;
+    boutonCarte.hidden = false;
+    boutonCarte.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = carte.getAttribute('data-carte') || 'https://www.google.com/maps?q=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&output=embed';
+      f.title = "Plan d'accès au cabinet, 32 rue Rémy Dumoncel, Paris 14e";
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.setAttribute('allowfullscreen', '');
+      var apercu = carte.querySelector('.carte-apercu');
+      if (apercu) apercu.remove();
+      carte.appendChild(f);
+      f.focus();
+    });
+  });
+
+  // ---- Formulaire : messages d'erreur clairs sous chaque champ ----
+  document.querySelectorAll('form[data-validation]').forEach(function (form) {
+    var champs = form.querySelectorAll('[data-erreur]');
+    form.setAttribute('novalidate', '');
+    var verifier = function (champ) {
+      var message = document.getElementById(champ.id + '-erreur');
+      var valide = champ.checkValidity();
+      if (message) { message.hidden = valide; message.textContent = valide ? '' : champ.getAttribute('data-erreur'); }
+      if (valide) champ.removeAttribute('aria-invalid'); else champ.setAttribute('aria-invalid', 'true');
+      return valide;
+    };
+    form.addEventListener('submit', function (e) {
+      var premier = null;
+      champs.forEach(function (c) { if (!verifier(c) && !premier) premier = c; });
+      if (premier) { e.preventDefault(); premier.focus(); }
+    });
+    champs.forEach(function (c) {
+      c.addEventListener('blur', function () { if (c.value) verifier(c); });
+      c.addEventListener('input', function () { if (c.getAttribute('aria-invalid') === 'true') verifier(c); });
+    });
+  });
+
+  // ---- Apparitions douces au défilement ----
+  var elements = document.querySelectorAll('.apparait');
+  if (!elements.length) return;
+  var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduit || !('IntersectionObserver' in window)) {
+    elements.forEach(function (el) { el.classList.add('est-visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('est-visible'); obs.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  elements.forEach(function (el) { obs.observe(el); });
+})();

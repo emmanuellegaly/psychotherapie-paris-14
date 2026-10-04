@@ -1,0 +1,16 @@
+<header class="entete">
+  <div class="entete-ligne">
+    <a class="signature" href="/">
+      <span class="signature-nom">{{site.nom}}</span>
+      <span class="signature-metier">{{site.sous_titre}}</span>
+    </a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
+    <nav class="navigation" id="navigation" aria-label="Navigation principale">
+      <ul>
+{{menu}}
+      </ul>
+      <a class="navigation-tel" href="{{site.telephone_lien}}">Appeler le {{site.telephone}}</a>
+      <a class="bouton bouton-petit" href="/prise-de-rendez-vous-en-ligne/">Prendre rendez-vous</a>
+    </nav>
+  </div>
+</header>

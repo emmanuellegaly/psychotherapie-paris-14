@@ -1,0 +1,26 @@
+<div class="venir-texte apparait">
+  <h2 id="t-venir" class="titre-grand">Venir au cabinet</h2>
+  <address class="venir-adresse">{{site.adresse}}, {{site.code_postal}} {{site.ville}}</address>
+  <h3 class="venir-sous-titre">Accès</h3>
+  <div class="acces-principal">
+    <p class="acces-ligne"><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+      <span><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4 — 4&nbsp;min à pied (environ 300&nbsp;m), l’accès le plus rapide</span></span></p>
+    <p><a class="lien-suite" href="https://www.google.com/maps/dir/?api=1&amp;origin=M%C3%A9tro+Mouton-Duvernet,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener">Itinéraire à pied depuis Mouton-Duvernet<span class="visuellement-cache"> (nouvel onglet)</span></a></p>
+  </div>
+  <ul class="acces-autres" aria-label="Autres possibilités">
+    <li><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span> <span>Alésia · ligne 4 <span class="acces-detail-inline">— 5&nbsp;min à pied (environ 400&nbsp;m)</span></span></li>
+    <li><span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span> <span>Denfert-Rochereau · RER B <span class="acces-detail-inline">— 8&nbsp;min à pied (environ 650&nbsp;m)</span></span></li>
+  </ul>
+  <dl class="venir-infos">
+    <div><dt>Consultations</dt><dd>Du lundi au vendredi, de 8h30 à 19h00</dd></div>
+  </dl>
+</div>
+<!-- Carte Google Maps chargée seulement au clic (js/page.js) : rien n'est envoyé à Google avant. -->
+<div class="carte apparait" data-carte="{{site.google_maps_integration}}">
+  <div class="carte-apercu">
+    <p class="carte-adresse">{{site.adresse}}<br>{{site.code_postal}} {{site.ville}}</p>
+    <button class="bouton carte-bouton" type="button" hidden>Afficher la carte</button>
+    <p class="carte-note">La carte est fournie par Google&nbsp;: elle ne se charge que si vous la demandez.</p>
+    <p class="carte-lien"><a href="{{site.google_maps_lien}}" target="_blank" rel="noopener">Ouvrir dans Google Maps<span class="visuellement-cache"> (nouvel onglet)</span></a></p>
+  </div>
+</div>
