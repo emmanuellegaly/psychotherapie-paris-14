@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/prata-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/albert-sans-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=68ce6dac">
+<link rel="stylesheet" href="/css/site.css?v=6e27c7e5">
 <script>document.documentElement.classList.add('js');</script>
 <script src="/js/page.js?v=96f70bc0" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://www.psychotherapie-paris-14.fr/#cabinet","name":"Emmanuelle Galy · Cabinet de psychothérapie en Gestalt-thérapie","description":"Psychothérapie individuelle en Gestalt-thérapie pour adultes, en face à face à Paris 14e.","url":"https://www.psychotherapie-paris-14.fr/","telephone":"+33670736639","image":["https://www.psychotherapie-paris-14.fr/images/cabinet-vue-principale-1600.jpg","https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg"],"priceRange":"90 € la séance","address":{"@type":"PostalAddress","streetAddress":"32 rue Rémy Dumoncel","postalCode":"75014","addressLocality":"Paris","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":48.829737,"longitude":2.330915},"areaServed":{"@type":"City","name":"Paris"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:30","closes":"19:00"}],"founder":{"@type":"Person","@id":"https://www.psychotherapie-paris-14.fr/#emmanuelle-galy","name":"Emmanuelle Galy","jobTitle":"Gestalt-thérapeute","url":"https://www.psychotherapie-paris-14.fr/psychotherapeute-paris-14/","image":"https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg","memberOf":[{"@type":"Organization","name":"Fédération Française de Psychothérapie et Psychanalyse (FF2P)"},{"@type":"Organization","name":"Société Française de Gestalt (SFG)"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Certificat Européen de Psychothérapie (CEP)","recognizedBy":{"@type":"Organization","name":"Association Européenne de Psychothérapie (EAP)"}},{"@type":"EducationalOccupationalCredential","name":"Gestalt-thérapeute certifiée","recognizedBy":{"@type":"Organization","name":"École Parisienne de Gestalt (EPG)"}}]}}</script>
@@ -62,7 +62,7 @@
 </header>
 
 <main id="contenu" tabindex="-1">
-<div class="page enveloppe sans-barre">
+<div class="page enveloppe sans-barre page--rdv">
   <nav class="fil-ariane" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><span aria-current="page">Prendre RDV</span></li></ol></nav>
   <article class="page__article">
     <header class="page-entete">
@@ -73,30 +73,76 @@
     
     <div class="texte">
 
-<div class="contact-grille">
-  <div>
-    <p class="chapo">Vous pouvez m’appeler au <a href="tel:+33670736639"><strong>06 70 73 66 39</strong></a> pour prendre rendez-vous.</p>
-    <section class="appel" aria-label="Prendre rendez-vous par téléphone">
-  <p class="appel__titre">Prendre rendez-vous par téléphone</p>
+<div class="rdv-page">
+  <div class="rdv-page__appel">
+    <section class="appel" aria-labelledby="t-appeler">
+  <h2 class="appel__titre-section" id="t-appeler">M’appeler</h2>
   <p class="appel__tel"><a href="tel:+33670736639">06 70 73 66 39</a></p>
-  <p class="appel__adresse">32 rue Rémy Dumoncel, 75014 Paris</p>
-  <p class="actions"><a class="bouton" href="tel:+33670736639">Appeler le 06 70 73 66 39</a> <a class="lien-suite" href="#venir">Accès et plan</a></p>
+  <p class="actions"><a class="bouton" href="tel:+33670736639">Appeler</a> <a class="lien-suite" href="#venir">Accès et plan</a></p>
   <p class="appel__note">Les séances ont lieu une fois par semaine, toutes les semaines (50 minutes, 90&nbsp;€ la séance).</p>
 </section>
 
-    <p>Vous pouvez aussi m’écrire avec le <a class="lien-suite" href="#ecrire">formulaire ci-dessous</a>.</p>
   </div>
-  <div>
-    <h2>Le premier rendez-vous</h2>
+  <section class="encart-ecrire" id="ecrire" aria-labelledby="t-ecrire">
+    <h2 id="t-ecrire">M’écrire</h2>
+    <form class="formulaire" action="https://formsubmit.co/emmanuelle.galy@gmail.com" method="POST" data-validation>
+  <input type="hidden" name="_subject" value="Nouvelle demande de client">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="true">
+  <input type="hidden" name="_next" value="https://www.psychotherapie-paris-14.fr/merci/">
+  <p class="formulaire__piege" aria-hidden="true"><label>Ne pas remplir ce champ <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
+  <p class="formulaire__aide">Tous les champs sont obligatoires.</p>
+  <div class="champs-duo">
+  <div class="champ">
+    <label for="f-nom">Nom <span aria-hidden="true">*</span></label>
+    <input id="f-nom" name="Nom" type="text" autocomplete="family-name" required maxlength="120" aria-describedby="f-nom-erreur" data-erreur="Merci d’indiquer votre nom.">
+    <p class="champ__erreur" id="f-nom-erreur" hidden></p>
+  </div>
+  <div class="champ">
+    <label for="f-prenom">Prénom <span aria-hidden="true">*</span></label>
+    <input id="f-prenom" name="Prénom" type="text" autocomplete="given-name" required maxlength="120" aria-describedby="f-prenom-erreur" data-erreur="Merci d’indiquer votre prénom.">
+    <p class="champ__erreur" id="f-prenom-erreur" hidden></p>
+  </div>
+  </div>
+  <div class="champs-duo">
+  <div class="champ">
+    <label for="f-email">Email <span aria-hidden="true">*</span></label>
+    <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160" aria-describedby="f-email-erreur" data-erreur="Merci d’indiquer une adresse e-mail valide (par exemple : prenom.nom@exemple.fr).">
+    <p class="champ__erreur" id="f-email-erreur" hidden></p>
+  </div>
+  <div class="champ">
+    <label for="f-tel">Téléphone <span aria-hidden="true">*</span></label>
+    <input id="f-tel" name="Téléphone" type="tel" autocomplete="tel" required maxlength="30" pattern="[0-9 +.\-\(\)]{6,30}" aria-describedby="f-tel-erreur" data-erreur="Merci d’indiquer votre numéro de téléphone (chiffres, espaces, signe + et traits d’union seulement).">
+    <p class="champ__erreur" id="f-tel-erreur" hidden></p>
+  </div>
+  </div>
+  <div class="champ">
+    <label for="f-demande">Votre demande <span aria-hidden="true">*</span></label>
+    <textarea id="f-demande" name="Votre demande" rows="3" required maxlength="3000" aria-describedby="f-demande-note f-demande-erreur" data-erreur="Merci de décrire votre demande."></textarea>
+    <p class="champ__note" id="f-demande-note">Merci de ne pas détailler ici d’informations de santé ; nous en parlerons de vive voix.</p>
+    <p class="champ__erreur" id="f-demande-erreur" hidden></p>
+  </div>
+  <div class="champ">
+    <label for="f-dispo">Vos disponibilités en semaine pour suivre une thérapie ? Merci d’indiquer plusieurs créneaux horaires <span aria-hidden="true">*</span></label>
+    <textarea id="f-dispo" name="Vos disponibilités en semaine" rows="3" required maxlength="1500" aria-describedby="f-dispo-erreur" data-erreur="Merci d’indiquer vos disponibilités en semaine."></textarea>
+    <p class="champ__erreur" id="f-dispo-erreur" hidden></p>
+  </div>
+  <p class="formulaire__envoi"><button class="bouton" type="submit">Envoyer le message</button></p>
+  <p class="formulaire__mention">Votre message m’est transmis par e-mail via le service FormSubmit ; il n’est pas conservé sur ce site. <a href="/mentions-legales/#donnees">Vos données</a></p>
+</form>
+
+  </section>
+  <section class="rdv-premier" aria-labelledby="t-premier">
+    <figure class="image rdv-premier__photo"><img src="/images/cabinet-bibliotheque-800.jpg" srcset="/images/cabinet-bibliotheque-480.jpg 480w, /images/cabinet-bibliotheque-800.jpg 800w" sizes="(min-width: 960px) 208px, 40vw" width="800" height="1200" alt="La bibliothèque du cabinet" loading="lazy" decoding="async"></figure>
+    <h2 id="t-premier">Le premier rendez-vous</h2>
     <p>Le <strong>premier rendez-vous</strong> permet de faire connaissance, de comprendre ce qui vous amène et de vous présenter le cadre de la thérapie. C’est également l’occasion de poser toutes les questions que vous souhaitez.</p>
     <p>Les <strong>trois premières séances</strong> permettent de préciser votre demande et de voir ensemble si la Gestalt-thérapie ainsi que ma façon de travailler vous conviennent.</p>
     <p><a class="lien-fleche" href="/psychotherapie/">Déroulement, tarif et durée de la thérapie</a></p>
-    <figure class="image image--verticale"><img src="/images/cabinet-bibliotheque-800.jpg" srcset="/images/cabinet-bibliotheque-480.jpg 480w, /images/cabinet-bibliotheque-800.jpg 800w" sizes="(min-width: 960px) 352px, 80vw" width="800" height="1200" alt="La bibliothèque du cabinet" loading="lazy" decoding="async"></figure>
-  </div>
+  </section>
 </div>
 
 <section class="section-venir" id="venir" aria-labelledby="t-venir">
-  <div class="venir">
+  <div class="venir venir--arrivee">
     <div class="venir-texte apparait">
   <h2 id="t-venir" class="titre-grand">Venir au cabinet</h2>
   <address class="venir-adresse">32 rue Rémy Dumoncel, 75014 Paris</address>
@@ -137,67 +183,18 @@
   <p class="encart-horaires__texte">Du lundi au vendredi de 8h30 à 19h00</p>
 </aside>
 
+    <section class="arrivee apparait" aria-labelledby="t-arrivee">
+      <h3 class="arrivee__titre" id="t-arrivee">À votre arrivée</h3>
+      <p>Un petit espace d’accueil, comme un sas d’arrivée, pour vous poser quelques minutes avant votre séance.</p>
+      <ul class="infos-pratiques" aria-label="Infos pratiques">
+        <li>Salle d’attente</li>
+        <li>Boisson chaude à disposition</li>
+        <li>Toilettes</li>
+        <li>Cabinet en rez-de-chaussée</li>
+      </ul>
+    </section>
   </div>
 </section>
-
-
-<div class="contact-grille contact-grille--formulaire">
-  <section id="ecrire" aria-labelledby="t-ecrire">
-    <h2 id="t-ecrire">M’écrire</h2>
-    <form class="formulaire" action="https://formsubmit.co/emmanuelle.galy@gmail.com" method="POST" data-validation>
-  <input type="hidden" name="_subject" value="Nouvelle demande de client">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_captcha" value="true">
-  <input type="hidden" name="_next" value="https://www.psychotherapie-paris-14.fr/merci/">
-  <p class="formulaire__piege" aria-hidden="true"><label>Ne pas remplir ce champ <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
-  <p class="formulaire__aide">Tous les champs sont obligatoires.</p>
-  <div class="champ">
-    <label for="f-nom">Nom <span aria-hidden="true">*</span></label>
-    <input id="f-nom" name="Nom" type="text" autocomplete="family-name" required maxlength="120" aria-describedby="f-nom-erreur" data-erreur="Merci d’indiquer votre nom.">
-    <p class="champ__erreur" id="f-nom-erreur" hidden></p>
-  </div>
-  <div class="champ">
-    <label for="f-prenom">Prénom <span aria-hidden="true">*</span></label>
-    <input id="f-prenom" name="Prénom" type="text" autocomplete="given-name" required maxlength="120" aria-describedby="f-prenom-erreur" data-erreur="Merci d’indiquer votre prénom.">
-    <p class="champ__erreur" id="f-prenom-erreur" hidden></p>
-  </div>
-  <div class="champ">
-    <label for="f-email">Email <span aria-hidden="true">*</span></label>
-    <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160" aria-describedby="f-email-erreur" data-erreur="Merci d’indiquer une adresse e-mail valide (par exemple : prenom.nom@exemple.fr).">
-    <p class="champ__erreur" id="f-email-erreur" hidden></p>
-  </div>
-  <div class="champ">
-    <label for="f-tel">Téléphone <span aria-hidden="true">*</span></label>
-    <input id="f-tel" name="Téléphone" type="tel" autocomplete="tel" required maxlength="30" pattern="[0-9 +.\-\(\)]{6,30}" aria-describedby="f-tel-erreur" data-erreur="Merci d’indiquer votre numéro de téléphone (chiffres, espaces, signe + et traits d’union seulement).">
-    <p class="champ__erreur" id="f-tel-erreur" hidden></p>
-  </div>
-  <div class="champ">
-    <label for="f-demande">Votre demande <span aria-hidden="true">*</span></label>
-    <textarea id="f-demande" name="Votre demande" rows="5" required maxlength="3000" aria-describedby="f-demande-note f-demande-erreur" data-erreur="Merci de décrire votre demande."></textarea>
-    <p class="champ__note" id="f-demande-note">Merci de ne pas détailler ici d’informations de santé ; nous en parlerons de vive voix.</p>
-    <p class="champ__erreur" id="f-demande-erreur" hidden></p>
-  </div>
-  <div class="champ">
-    <label for="f-dispo">Vos disponibilités en semaine pour suivre une thérapie ? Merci d’indiquer plusieurs créneaux horaires <span aria-hidden="true">*</span></label>
-    <textarea id="f-dispo" name="Vos disponibilités en semaine" rows="4" required maxlength="1500" aria-describedby="f-dispo-erreur" data-erreur="Merci d’indiquer vos disponibilités en semaine."></textarea>
-    <p class="champ__erreur" id="f-dispo-erreur" hidden></p>
-  </div>
-  <p><button class="bouton" type="submit">Envoyer le message</button></p>
-  <p class="formulaire__mention">Votre message m’est transmis par e-mail via le service FormSubmit ; il n’est pas conservé sur ce site. <a href="/mentions-legales/#donnees">Vos données</a></p>
-</form>
-
-  </section>
-  <section aria-labelledby="t-arrivee">
-    <h2 id="t-arrivee">À votre arrivée</h2>
-    <p>Un petit espace d’accueil, comme un sas d’arrivée, pour vous poser quelques minutes avant votre séance.</p>
-    <ul class="infos-pratiques" aria-label="Infos pratiques">
-      <li>Salle d’attente</li>
-      <li>Boisson chaude à disposition</li>
-      <li>Toilettes</li>
-      <li>Cabinet en rez-de-chaussée</li>
-    </ul>
-  </section>
-</div>
 
     </div>
     
