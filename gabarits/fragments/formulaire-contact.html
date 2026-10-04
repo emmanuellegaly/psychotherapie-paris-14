@@ -1,30 +1,40 @@
 <form class="formulaire" action="https://formsubmit.co/emmanuelle.galy@gmail.com" method="POST" data-validation>
-  <input type="hidden" name="_subject" value="Demande depuis le site psychotherapie-paris-14.fr">
+  <input type="hidden" name="_subject" value="Nouvelle demande de client">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="true">
   <input type="hidden" name="_next" value="{{site.url}}/merci/">
   <p class="formulaire__piege" aria-hidden="true"><label>Ne pas remplir ce champ <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
-  <p class="formulaire__aide" id="aide-obligatoire">Les champs marqués d’un astérisque (<span aria-hidden="true">*</span>) sont obligatoires.</p>
+  <p class="formulaire__aide">Tous les champs sont obligatoires.</p>
   <div class="champ">
     <label for="f-nom">Nom <span aria-hidden="true">*</span></label>
-    <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120" aria-describedby="f-nom-erreur" data-erreur="Merci d’indiquer votre nom.">
+    <input id="f-nom" name="Nom" type="text" autocomplete="family-name" required maxlength="120" aria-describedby="f-nom-erreur" data-erreur="Merci d’indiquer votre nom.">
     <p class="champ__erreur" id="f-nom-erreur" hidden></p>
   </div>
   <div class="champ">
-    <label for="f-email">E-mail <span aria-hidden="true">*</span></label>
+    <label for="f-prenom">Prénom <span aria-hidden="true">*</span></label>
+    <input id="f-prenom" name="Prénom" type="text" autocomplete="given-name" required maxlength="120" aria-describedby="f-prenom-erreur" data-erreur="Merci d’indiquer votre prénom.">
+    <p class="champ__erreur" id="f-prenom-erreur" hidden></p>
+  </div>
+  <div class="champ">
+    <label for="f-email">Email <span aria-hidden="true">*</span></label>
     <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160" aria-describedby="f-email-erreur" data-erreur="Merci d’indiquer une adresse e-mail valide (par exemple : prenom.nom@exemple.fr).">
     <p class="champ__erreur" id="f-email-erreur" hidden></p>
   </div>
   <div class="champ">
-    <label for="f-tel">Téléphone <span class="champ__facultatif">(facultatif)</span></label>
-    <input id="f-tel" name="telephone" type="tel" autocomplete="tel" maxlength="30" pattern="[0-9 +.\-\(\)]{6,30}" aria-describedby="f-tel-erreur" data-erreur="Ce numéro ne semble pas valide : chiffres, espaces, + et tirets seulement.">
+    <label for="f-tel">Téléphone <span aria-hidden="true">*</span></label>
+    <input id="f-tel" name="Téléphone" type="tel" autocomplete="tel" required maxlength="30" pattern="[0-9 +.\-\(\)]{6,30}" aria-describedby="f-tel-erreur" data-erreur="Merci d’indiquer votre numéro de téléphone (chiffres, espaces, + et tirets seulement).">
     <p class="champ__erreur" id="f-tel-erreur" hidden></p>
   </div>
   <div class="champ">
-    <label for="f-message">Message <span aria-hidden="true">*</span></label>
-    <textarea id="f-message" name="message" rows="6" required maxlength="3000" aria-describedby="f-message-note f-message-erreur" data-erreur="Merci d’écrire votre message."></textarea>
-    <p class="champ__note" id="f-message-note">Merci de ne pas détailler ici d’informations de santé ; nous en parlerons de vive voix.</p>
-    <p class="champ__erreur" id="f-message-erreur" hidden></p>
+    <label for="f-demande">Votre demande <span aria-hidden="true">*</span></label>
+    <textarea id="f-demande" name="Votre demande" rows="5" required maxlength="3000" aria-describedby="f-demande-note f-demande-erreur" data-erreur="Merci de décrire votre demande."></textarea>
+    <p class="champ__note" id="f-demande-note">Merci de ne pas détailler ici d’informations de santé ; nous en parlerons de vive voix.</p>
+    <p class="champ__erreur" id="f-demande-erreur" hidden></p>
+  </div>
+  <div class="champ">
+    <label for="f-dispo">Vos disponibilités en semaine pour suivre une thérapie ? Merci d’indiquer plusieurs créneaux horaires <span aria-hidden="true">*</span></label>
+    <textarea id="f-dispo" name="Vos disponibilités en semaine" rows="4" required maxlength="1500" aria-describedby="f-dispo-erreur" data-erreur="Merci d’indiquer vos disponibilités en semaine."></textarea>
+    <p class="champ__erreur" id="f-dispo-erreur" hidden></p>
   </div>
   <p><button class="bouton" type="submit">Envoyer le message</button></p>
   <p class="formulaire__mention">Votre message m’est transmis par e-mail via le service FormSubmit ; il n’est pas conservé sur ce site.</p>
