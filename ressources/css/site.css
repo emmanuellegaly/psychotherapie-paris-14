@@ -511,3 +511,5 @@ a[href^="tel:"] { white-space: nowrap; }
 .texte .infos-pratiques li::before { content: none; }
 .infos-pratiques--sombre { color: var(--pied-texte); }
 .infos-pratiques--sombre li:not(:last-child)::after { color: var(--or-clair); }
+.carte-lien-sous { margin: 0.6rem 0 0; font-size: 0.86rem; }
+.carte-lien-sous a { color: var(--nuit); }

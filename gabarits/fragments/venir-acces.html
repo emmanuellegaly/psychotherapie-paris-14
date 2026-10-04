@@ -15,12 +15,7 @@
     <div><dt>Consultations</dt><dd>Du lundi au vendredi de 8h30 à 19h00</dd></div>
   </dl>
 </div>
-<!-- Carte Google Maps chargée seulement au clic (js/page.js) : rien n'est envoyé à Google avant. -->
-<div class="carte apparait" data-carte="{{site.google_maps_integration}}">
-  <div class="carte-apercu">
-    <p class="carte-adresse">{{site.adresse}}<br>{{site.code_postal}} {{site.ville}}</p>
-    <button class="bouton carte-bouton" type="button" hidden>Afficher la carte</button>
-    <p class="carte-note">La carte est fournie par Google&nbsp;: elle ne se charge que si vous la demandez.</p>
-    <p class="carte-lien"><a href="{{site.google_maps_lien}}" target="_blank" rel="noopener">Ouvrir dans Google Maps<span class="visuellement-cache"> (nouvel onglet)</span></a></p>
-  </div>
+<div class="carte apparait">
+  <iframe src="{{site.google_maps_integration}}" title="Plan d’accès au cabinet, 32 rue Rémy Dumoncel, Paris 14e" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 </div>
+<p class="carte-lien-sous"><a href="{{site.google_maps_lien}}" target="_blank" rel="noopener">Ouvrir dans Google Maps<span class="visuellement-cache"> (nouvel onglet)</span></a></p>
