@@ -78,12 +78,11 @@
 .prdv-encart > :last-child { margin-bottom: 0; }
 .prdv-appel { container-type: inline-size; }
 .prdv-appel__tel {
-  // le numéro remplit l'encart et tient toujours sur une ligne
-  font-family: @police-titre; font-size: ~"min(3rem, 13cqi)"; line-height: 1.05; font-variant-numeric: lining-nums; margin: 0 0 1.25rem;
+  // le numéro remplit l'encart, tient sur une ligne et est lui-même le lien d'appel (pas de bouton en double)
+  font-family: @police-titre; font-size: ~"min(3rem, 13cqi)"; line-height: 1.05; font-variant-numeric: lining-nums; margin: 0;
   a { text-decoration: none; }
   a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: @laiton; }
 }
-.prdv-appel__action { margin: 0; }
 
 // ---------- Barre latérale des pages ----------
 .encart {

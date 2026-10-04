@@ -22,8 +22,7 @@ format: rdv
 
   <section class="prdv-carte prdv-appel" aria-labelledby="t-appeler">
     <h2 class="prdv-carte__titre" id="t-appeler">M’appeler</h2>
-    <p class="prdv-appel__tel"><a href="{{site.telephone_lien}}">{{site.telephone}}</a></p>
-    <p class="prdv-appel__action"><a class="bouton" href="{{site.telephone_lien}}">Appeler</a></p>
+    <p class="prdv-appel__tel"><a href="{{site.telephone_lien}}" aria-label="Appeler le {{site.telephone}}">{{site.telephone}}</a></p>
   </section>
 
   <section class="prdv-carte prdv-ecrire" id="ecrire" aria-labelledby="t-ecrire">
@@ -33,7 +32,7 @@ format: rdv
 
   <div class="prdv-seances">
     <p class="prdv-sur" id="t-seances">Les séances</p>
-    <dl class="chiffres-cles chiffres-cles--ligne" aria-labelledby="t-seances">
+    <dl class="chiffres-cles chiffres-cles--ligne chiffres-cles--compact" aria-labelledby="t-seances">
       <div><dt>Fréquence</dt><dd><span class="chiffre-cle">Une</span> fois par semaine</dd></div>
       <div><dt>Durée</dt><dd><span class="chiffre-cle">50</span> minutes</dd></div>
       <div><dt>Tarif</dt><dd><span class="chiffre-cle">90</span> € la séance</dd></div>

@@ -1,13 +1,14 @@
 // =====================================================================
 // PAGE « PRENDRE RENDEZ-VOUS » : agencement seulement.
 // Une seule grille coupée au même endroit (5 | 7) dans chaque section :
-//   1. prendre contact (titre, séances et appeler à gauche ; écrire à droite),
+//   1. prendre contact (titre, appeler puis séances à gauche ; écrire à droite),
 //   2. le premier rendez-vous (photo | texte),
 //   3. venir au cabinet (stations | trajets ; puis arrivée | horaires).
 // Mobile d'abord ; élargissements à 700 et 940 px.
 // =====================================================================
 
-.page--libre { padding-top: clamp(1rem, 2vw, 1.5rem); }
+// page « libre » : même conteneur large que l'en-tête et le pied de page (bords alignés à toutes les largeurs)
+.page--libre { .conteneur-large(); padding-top: clamp(1rem, 2vw, 1.5rem); }
 .page--libre .fil-ariane { margin-bottom: clamp(1rem, 2.4vw, 1.75rem); }
 #ecrire, #venir { scroll-margin-top: 5.5rem; }
 body:has(.page--rdv) .barre-rdv { display: none; } // le numéro et le bouton sont déjà en haut de cette page
@@ -16,7 +17,6 @@ body:has(.page--rdv) .barre-rdv { display: none; } // le numéro et le bouton so
 .prdv-ouverture { display: grid; gap: 1.5rem; grid-template-areas: "entete" "appel" "ecrire" "seances"; }
 .prdv-entete { grid-area: entete; }
 .prdv-appel { grid-area: appel; }
-.prdv-appel__action .bouton { min-width: 9rem; }
 .prdv-ecrire { grid-area: ecrire; }
 .prdv-seances { grid-area: seances; }
 
@@ -30,10 +30,9 @@ body:has(.page--rdv) .barre-rdv { display: none; } // le numéro et le bouton so
 @media (min-width: @r-940) {
   .prdv-ouverture {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto auto 1fr;
-    grid-template-areas: "entete ecrire" "seances ecrire" "appel ecrire"; row-gap: clamp(1.75rem, 2.6vw, 2.25rem); align-items: start;
+    grid-template-areas: "entete ecrire" "appel ecrire" "seances ecrire"; row-gap: clamp(1.75rem, 2.6vw, 2.25rem); align-items: start;
   }
   .prdv-entete { margin: 0; }
-  .prdv-appel { align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
 }
 
 // ---------- 2. Le premier rendez-vous ----------

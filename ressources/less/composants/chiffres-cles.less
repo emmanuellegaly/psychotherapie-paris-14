@@ -2,6 +2,7 @@
 // CHIFFRES CLÉS « Les séances » (Une · 50 · 90), identiques sur l'accueil et Prendre rendez-vous
 //   <dl class="chiffres-cles"> <div><dt>Durée</dt><dd><span class="chiffre-cle">50</span> minutes</dd></div> … </dl>
 //   .chiffres-cles--ligne : les trois chiffres côte à côte, le chiffre au-dessus de son texte.
+//   .chiffres-cles--compact : chiffres plus petits (Prendre rendez-vous : le numéro de téléphone reste le seul gros chiffre).
 // Tous les chiffres (y compris « Une ») en Prata droit, même taille.
 // =====================================================================
 
@@ -18,6 +19,7 @@
   > div { padding-bottom: 0; }
   .chiffre-cle { display: block; margin: 0 0 0.2rem; }
 }
+.chiffres-cles--compact .chiffre-cle { font-size: @chiffre-cle-compact; }
 
 // ---------- Cadre pratique dans les textes (fréquence, durée, tarif écrits en toutes lettres) ----------
 .cadre {
