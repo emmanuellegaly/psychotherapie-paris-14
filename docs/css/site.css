@@ -12,16 +12,17 @@
    contour des champs de formulaire 3,2:1.
 
    Polices auto-hébergées (licence OFL, dans /fonts/) :
-   Bodoni Moda (titres) + Albert Sans (texte). Aucun appel à un service extérieur.
+   Prata (titres ; italiques en Bodoni Moda) + Albert Sans (texte). Aucun appel à un service extérieur.
    ===================================================================== */
 
 @font-face {
-  font-family: "Bodoni Moda";
-  src: url("../fonts/bodoni-moda-variable-latin.woff2") format("woff2");
+  font-family: "Prata";
+  src: url("../fonts/prata-latin.woff2") format("woff2");
   font-weight: 400 700; font-style: normal; font-display: swap;
 }
+/* Prata n a pas d italique : les passages en italique des titres utilisent l italique de Bodoni Moda, de la même famille. */
 @font-face {
-  font-family: "Bodoni Moda";
+  font-family: "Prata";
   src: url("../fonts/bodoni-moda-italic-variable-latin.woff2") format("woff2");
   font-weight: 400 700; font-style: italic; font-display: swap;
 }
@@ -67,7 +68,7 @@
   --brun-profond: #3A1712;
 
   /* Polices */
-  --titre: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --titre: "Prata", "Didot", "Bodoni 72", Georgia, serif;
   --texte: "Albert Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
 
   /* Mesures */
