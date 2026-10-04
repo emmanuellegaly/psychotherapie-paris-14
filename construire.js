@@ -283,7 +283,7 @@ function construirePage(src, type) {
     const lateral = m.barre_laterale === 'non' ? '' : raccourcis(remplir(gabarit(m.barre_laterale === 'sans-portrait' ? 'fragments/barre-laterale-sans-portrait.html' : 'fragments/barre-laterale.html'), {}));
     principal = remplir(gabarit('page.html'), {
       fil_ariane: fil.html, titre: echapper(m.titre), meta_article: enTeteArticle, chapo, image_une: imageUne,
-      contenu: corps, barre_laterale: lateral, classe: (lateral ? 'avec-barre' : 'sans-barre') + (g === 'article' ? ' page--article' : ''),
+      contenu: corps, barre_laterale: lateral, classe: (lateral ? 'avec-barre' : 'sans-barre') + (g === 'article' ? ' page--article' : '') + (m.format ? ' page--' + echapper(m.format) : ''),
       classe_texte: g === 'article' && !m.chapo ? ' texte--chapo-auto' : '',
       suite: g === 'article' ? raccourcis(remplir(gabarit('fragments/apres-article.html'), {})) + '\n' + blocLies : '',
     });
@@ -397,7 +397,7 @@ function construire() {
   copierDossier(path.join(RESSOURCES, 'racine'), SORTIE);
 
   articles = listerSources('articles').filter(a => a.meta.statut !== 'brouillon')
-    .sort((a, b) => b.meta.date.localeCompare(a.meta.date));
+    .sort((a, b) => b.meta.date.localeCompare(a.meta.date) || Number(b.meta.ordre || 0) - Number(a.meta.ordre || 0));  // ordre : départage deux articles du même jour (le plus grand en premier)
   const pages = listerSources('pages').filter(p => p.meta.statut !== 'brouillon');
 
   const resultats = [];

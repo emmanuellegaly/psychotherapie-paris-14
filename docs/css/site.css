@@ -573,3 +573,16 @@ a[href^="tel:"] { white-space: nowrap; }
 .articles-lies__titre::before { content: ""; position: absolute; top: 0; left: 0; width: 2.6rem; height: 4px; background: var(--motif-points); }
 .articles-lies .carte-article__titre { font-size: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem); }
 @media (min-width: 700px) { .articles-lies .carte-article { grid-template-columns: 9rem 1fr; gap: 1.4rem; } }
+
+/* ---------- Article au format entretien ---------- */
+.page--entretien .page-entete__chapo { font-family: var(--titre); font-style: italic; font-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.35rem); line-height: 1.5; color: var(--nuit); max-width: 34em; }
+.texte .entretien__question {
+  margin: 2.2rem 0 1rem; padding: 0.15rem 0 0.15rem 1.1rem; border-left: 2px solid var(--moutarde);
+  font-weight: 600; font-size: 1.06em; line-height: 1.5; color: var(--nuit);
+}
+.texte h2 + .entretien__question { margin-top: 0; }
+.texte .entretien__fin {
+  margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid var(--filet);
+  font-family: var(--titre); font-style: italic; font-size: 1.12rem; line-height: 1.55; color: var(--ardoise);
+}
+.texte .entretien__fin::before { content: ""; display: block; width: 2.6rem; height: 4px; margin-bottom: 1rem; background: var(--motif-points); }
