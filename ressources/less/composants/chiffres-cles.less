@@ -1,0 +1,29 @@
+// =====================================================================
+// CHIFFRES CLÉS « Les séances » (Une · 50 · 90), identiques sur l'accueil et Prendre rendez-vous
+//   <dl class="chiffres-cles"> <div><dt>Durée</dt><dd><span class="chiffre-cle">50</span> minutes</dd></div> … </dl>
+//   .chiffres-cles--ligne : les trois chiffres côte à côte, le chiffre au-dessus de son texte.
+// Tous les chiffres (y compris « Une ») en Prata droit, même taille.
+// =====================================================================
+
+.chiffres-cles {
+  margin: 0;
+  > div { padding: 0.8rem 0; border-top: 1px solid @filet-fort; }
+  dt { font-size: @taille-mini; color: @ardoise; margin-bottom: 0.15rem; }
+  dd { margin: 0; font-size: 1rem; line-height: 1.35; }
+}
+.chiffre-cle { .style-chiffre-cle(); margin-right: 0.35rem; }
+
+.chiffres-cles--ligne {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(0.9rem, 2vw, 1.5rem);
+  > div { padding-bottom: 0; }
+  .chiffre-cle { display: block; margin: 0 0 0.2rem; }
+}
+
+// ---------- Cadre pratique dans les textes (fréquence, durée, tarif écrits en toutes lettres) ----------
+.cadre {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0 1.5rem;
+  margin: 1.75rem 0; padding: 0;
+  > div { padding: 0.9rem 0; border-top: 1px solid @laiton; }
+  dt { .etiquette(); }
+  dd { margin: 0.2rem 0 0; .titre(@titre-3; @interligne-serre); }
+}

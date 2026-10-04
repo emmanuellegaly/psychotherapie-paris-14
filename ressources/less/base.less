@@ -1,0 +1,81 @@
+// =====================================================================
+// BASE : polices, remise à zéro, typographie de base, liens, focus, accessibilité.
+// =====================================================================
+
+// ---------- Polices auto-hébergées (dans /fonts/, aucun appel à un service extérieur) ----------
+@font-face {
+  font-family: "Prata";
+  src: url("../fonts/prata-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+// Prata n'a pas d'italique : l'italique des citations utilise Bodoni Moda, de la même famille.
+@font-face {
+  font-family: "Prata";
+  src: url("../fonts/bodoni-moda-italic-variable-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Albert Sans";
+  src: url("../fonts/albert-sans-variable-latin.woff2") format("woff2");
+  font-weight: 300 700; font-style: normal; font-display: swap;
+}
+
+// ---------- Remise à zéro ----------
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: @blanc;
+  color: @nuit;
+  font-family: @police-texte;
+  font-size: @taille-texte;
+  line-height: @interligne-texte;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+p, ul, ol, dl, address { margin: 0 0 1.1em; }
+address { font-style: normal; }
+figure { margin: 0; }
+strong { font-weight: 600; }
+
+// ---------- Titres : Prata, toujours droit ----------
+h1, h2, h3, h4 { margin: 0; font-family: @police-titre; font-weight: 400; color: @nuit; text-wrap: balance; }
+h1 em, h2 em, h3 em { font-style: normal; } // pas d'italique dans les titres (réservé aux citations)
+p, dd, li { text-wrap: pretty; }
+
+// ---------- Liens ----------
+a { color: inherit; text-decoration-thickness: 1px; text-decoration-color: @laiton; text-underline-offset: 0.22em; }
+a:hover { text-decoration-color: @nuit; }
+a[href^="tel:"] { white-space: nowrap; }
+
+// ---------- Focus et accessibilité ----------
+:focus-visible { outline: 2px solid @nuit; outline-offset: 3px; }
+main:focus { outline: none; }
+.visuellement-cache {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.lien-evitement {
+  position: absolute; left: 1rem; top: -4rem; z-index: 50;
+  background: @nuit; color: @blanc; padding: 0.6rem 1rem;
+  &:focus { top: 1rem; }
+}
+// les titres ciblés par une ancre ne passent pas sous la barre de rendez-vous
+[id] { scroll-margin-top: @marge-ancre; }
+
+// ---------- Apparitions douces au défilement ----------
+.js .apparait { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .9s cubic-bezier(.2, .65, .2, 1); }
+.js .apparait.est-visible { opacity: 1; transform: none; }
+
+// ---------- Préférences de l'utilisateur ----------
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .apparait { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
+}
+@media print {
+  .navigation, .menu-bouton, .barre-laterale, .pied, .apres-article { display: none; }
+  a { color: inherit; }
+}

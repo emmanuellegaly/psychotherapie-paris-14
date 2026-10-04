@@ -1,0 +1,117 @@
+// =====================================================================
+// VARIABLES DU SITE : le SEUL endroit où se règlent couleurs, polices,
+// tailles de titres, espacements, largeurs et points de rupture.
+// Aucun autre fichier n'écrit de couleur, de police ou de taille de titre en dur.
+//
+// Couleurs tirées du cabinet : blanc lumière, plâtre, chêne clair, moutarde (canapé,
+// réservée aux boutons et aux filets d'encart), laiton (filets), bleu nuit (texte).
+// Couleurs du tableau du cabinet, à petites doses : brun-rouge, sable, brun profond.
+// Contrastes mesurés (WCAG AA) : texte bleu nuit sur blanc 15,7:1 ; ardoise 7,8:1 ;
+// laiton foncé (petits textes) 5,2:1 sur blanc, 4,7:1 sur plâtre ; brun-rouge 7,0:1 ;
+// bouton moutarde + texte bleu nuit 6,1:1 ; pied de page : texte 12,9:1, or clair 8,9:1 ;
+// contour des champs de formulaire 3,3:1.
+// =====================================================================
+
+// ---------- Couleurs du cabinet ----------
+@blanc:            #FDFCFA;   // blanc lumière (murs)
+@blanc-pur:        #FFFFFF;
+@platre:           #F4F2ED;   // plâtre : fonds d'encarts
+@chene:            #D8B88A;   // chêne clair (parquet, bibliothèque)
+@moutarde:         #C29A2A;   // canapé : boutons et filet du haut des encarts
+@moutarde-survol:  #D4AE3C;
+@laiton:           #B8975A;   // filets
+@laiton-texte:     #8A6516;   // laiton foncé, lisible sur blanc (petits textes)
+@nuit:             #17203B;   // bleu nuit : texte et titres
+@nuit-accueil:     #1A2350;   // murs de l'espace d'accueil
+@ardoise:          #4A5068;   // texte secondaire
+@or-clair:         #D9BE7A;   // or sur bleu nuit
+@pied-texte:       #E4E6EE;
+@pied-doux:        #C9CEDD;
+@bordure-champ:    #8C8F9E;   // contour des champs de formulaire
+
+// ---------- Couleurs du tableau du cabinet (détails graphiques, à doser) ----------
+@brun-rouge:       #963A26;
+@sable:            #E2B48C;
+@brun-profond:     #3A1712;
+
+// ---------- Filets, voiles et ombres (dérivés des couleurs ci-dessus) ----------
+@filet:            fade(@laiton, 50%);    // séparateurs courants
+@filet-fort:       fade(@laiton, 55%);
+@filet-doux:       fade(@laiton, 35%);
+@filet-cadre:      fade(@laiton, 70%);    // contour des plans et du carrousel
+@or-filet:         fade(@or-clair, 70%);  // soulignés du pied de page
+@or-filet-doux:    fade(@or-clair, 35%);
+@chambranle:       fade(@blanc, 75%);     // cadre clair sur la photo d'ouverture
+@fond-barre:       fade(@blanc, 97%);     // barre de rendez-vous fixe
+@ombre:            fade(@nuit, 55%);
+@ombre-tableau:    0 1px 0 fade(@nuit, 6%), 0 18px 40px -24px fade(@brun-profond, 45%);
+
+// ---------- Polices (auto-hébergées, licence OFL) ----------
+// Prata : TOUS les titres et les chiffres, toujours en romain (droit).
+// Bodoni Moda italique : uniquement le texte des citations (déclarée comme l'italique de Prata).
+// Albert Sans : le texte courant.
+@police-titre:     "Prata", "Didot", "Bodoni 72", Georgia, serif;
+@police-texte:     "Albert Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+// ---------- Échelle typographique : une taille par niveau, la même sur toutes les pages ----------
+@taille-texte:       clamp(1rem, 0.96rem + 0.2vw, 1.0938rem);
+@interligne-texte:   1.68;
+@titre-ouverture:    clamp(2.3rem, 1.4rem + 3.6vw, 4.3rem);    // le titre du premier écran de l'accueil
+@titre-page:         clamp(2.1rem, 1.5rem + 2.4vw, 3.4rem);    // h1 de toutes les autres pages
+@titre-section:      clamp(1.8rem, 1.35rem + 1.6vw, 2.6rem);   // grandes sections (accueil, Prendre rendez-vous, Venir)
+@intertitre:         clamp(1.55rem, 1.3rem + 1vw, 2.1rem);     // h2 dans une colonne de lecture
+@titre-encart:       clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem);    // titre d'un encart (rendez-vous, fin d'article…)
+@titre-carte:        clamp(1.3rem, 1.15rem + 0.55vw, 1.6rem);  // titre d'un article dans une liste
+@titre-3:            clamp(1.25rem, 1.15rem + 0.4vw, 1.45rem); // h3, titres de liste, étapes, encarts de la barre latérale
+@titre-telephone:    clamp(1.7rem, 1.4rem + 1vw, 2.2rem);      // numéro de téléphone mis en avant
+@titre-telephone-etroit: 1.6rem;                              // numéro dans la barre latérale (colonne étroite)
+@titre-invitation:   clamp(1.7rem, 1.1rem + 2.4vw, 3rem);      // « Prenez un temps pour vous. » sur la photo d'ouverture
+@titre-mention:      clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);   // phrase courte en Prata (horaires)
+@chiffre-cle:        clamp(2.4rem, 1.9rem + 1.6vw, 3.2rem);    // chiffres clés « Les séances » (Une, 50, 90)
+@chapo:              clamp(1.08rem, 1rem + 0.35vw, 1.24rem);   // chapeaux et textes d'introduction
+@citation-grande:    clamp(1.4rem, 1.1rem + 1.2vw, 2.1rem);    // citation mise en valeur (tableau)
+@citation:           clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);   // citations dans les textes et les marges
+
+@interligne-titre:   1.1;
+@interligne-serre:   1.2;
+@taille-sur-titre:   0.78rem;   // sur-titres en capitales (« Les séances », « Venir »…)
+@taille-etiquette:   0.75rem;   // étiquettes en capitales (fil d'Ariane, intitulés)
+@taille-petit:       0.92rem;   // détails
+@taille-note:        0.88rem;   // notes sous un bloc
+@taille-mini:        0.86rem;   // intitulés des chiffres clés
+@taille-mention:     0.82rem;   // mentions, petites lignes
+
+// ---------- Espacements ----------
+@gouttiere:          clamp(16px, 4.5vw, 64px);       // marge latérale de la page
+@espace-section:     clamp(4rem, 8vw, 7rem);         // entre deux grandes sections, sur toutes les pages
+@colonnes:           clamp(2.5rem, 6vw, 6rem);       // entre deux colonnes (accueil, pages)
+@colonnes-serrees:   clamp(1.5rem, 3.4vw, 3rem);     // entre deux colonnes resserrées (Prendre rendez-vous)
+@encart-marge:       clamp(1.25rem, 2.5vw, 2rem);    // marge intérieure de tous les encarts
+@bloc:               clamp(2.5rem, 5vw, 4rem);       // entre deux blocs d'une même page
+
+// ---------- Largeurs ----------
+@largeur:            1360px;    // conteneur large (en-tête, accueil, pied de page)
+@largeur-page:       1180px;    // pages intérieures
+@largeur-texte:      40rem;     // colonne de lecture
+@largeur-chapo:      34em;
+@largeur-barre:      21rem;     // barre latérale des pages
+
+// ---------- Points de rupture (mobile d'abord) ----------
+@r-480:   480px;
+@r-560:   560px;
+@r-600:   600px;
+@r-640:   640px;
+@r-700:   700px;
+@r-760:   760px;
+@r-900:   900px;
+@r-940:   940px;
+@r-960:   960px;
+@r-1100:  1100px;
+// pour les requêtes « jusqu'à » : (max-width: (@r-960 - 0.02px))
+@moins:   0.02px;
+
+// ---------- Hauteurs de défilement (barre de rendez-vous fixe) ----------
+@marge-ancre:        5rem;
+
+// ---------- Durées ----------
+@transition:         .25s ease;

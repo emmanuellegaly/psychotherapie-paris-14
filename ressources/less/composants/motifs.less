@@ -1,0 +1,17 @@
+// =====================================================================
+// MOTIFS DU TABLEAU DU CABINET : fil de points, lignes parallèles, bandeau du tableau.
+// (Les mixins .fil-de-points(), .motif-lignes(), .coin-lignes() sont dans mixins.less.)
+// =====================================================================
+
+// fil de points à poser dans le HTML : <span class="fil-points" aria-hidden="true"></span>
+.fil-points { display: block; .fil-de-points(); }
+
+// ---------- Bandeau du tableau (accueil) ----------
+.tableau {
+  background: @platre; margin-top: @espace-section; padding: clamp(2.5rem, 6vw, 5rem) 0; position: relative;
+  &::before { // lisière de lignes parallèles, reprise du tableau
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10px;
+    .motif-lignes(90deg); opacity: .55;
+  }
+}
+.tableau-oeuvre img { width: 100%; box-shadow: @ombre-tableau; }

@@ -30,3 +30,6 @@ contenu/_origine/
 backup/
 archive*/
 *.zip
+
+# Modules Node (compilateur LESS) : réinstallés par « npm install »
+node_modules/

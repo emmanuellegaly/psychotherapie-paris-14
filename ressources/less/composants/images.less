@@ -1,0 +1,21 @@
+// =====================================================================
+// IMAGES : images dans les textes, image à la une, légendes, médaillon.
+// =====================================================================
+
+.image { margin: 2rem 0; }
+// légendes : Prata droit, ardoise (même style sur toutes les pages)
+.image figcaption, .contact-photo figcaption { .legende(); margin-top: 0.75rem; font-size: 1.05rem; }
+.image-une {
+  margin: 0 0 2.25rem; max-width: @largeur-texte;
+  img { width: 100%; }
+}
+@media (min-width: @r-700) {
+  .image--droite { float: right; width: 42%; margin: 0.4rem 0 1.25rem 2rem; }
+  .image--portrait { float: right; width: 15rem; margin: 0.3rem 0 1.5rem 2rem; }
+}
+.lien-image {
+  display: block;
+  &:focus-visible { outline-offset: 2px; }
+}
+// médaillon (motif rond du tableau)
+.medaillon { width: clamp(84px, 13vw, 128px); height: auto; margin-bottom: 0.25rem; }

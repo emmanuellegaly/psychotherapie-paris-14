@@ -1,0 +1,62 @@
+// =====================================================================
+// LISTES À FILETS : liens de suite, motifs de consultation, trois mots, titres et formations,
+// étapes, infos pratiques. Toutes sur le même principe : un filet laiton entre les éléments.
+// =====================================================================
+
+// ---------- Liens de suite (« Pour aller plus loin », page 404) ----------
+.suite-lecture { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid @filet; }
+.liens-suite {
+  display: grid; gap: 0; .liste-filets(@filet; 0.75rem 0);
+  a { font-weight: 600; text-decoration: none; .fleche-apres(); }
+  a:hover { text-decoration: underline; }
+}
+.texte .liens-suite > li { padding: 0.75rem 0; margin: 0; }
+.texte .liens-suite > li::before { display: none; }
+
+// ---------- Ce qui peut vous amener (accueil) ----------
+.liste-titre { .titre(@titre-3; @interligne-serre); margin-bottom: 0.6rem; }
+.liste-motifs {
+  margin: 0; .liste-filets(@filet; 0.6rem 0);
+  li { font-size: 1.02rem; }
+  a { font-weight: 600; text-decoration-color: @laiton; .fleche-apres(); }
+}
+
+// ---------- Trois mots (accueil) ----------
+.trois-mots {
+  margin: 2rem 0 0; padding: 0; list-style: none; display: grid; gap: 0;
+  li { padding: 0.8rem 0; border-top: 1px solid @filet; color: @ardoise; font-size: 0.97rem; }
+  strong { display: block; color: @nuit; font-weight: 600; }
+}
+@media (min-width: @r-640) {
+  .trois-mots { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+}
+
+// ---------- Titres et formations (accueil) ----------
+.titres {
+  margin: 1.75rem 0 0; display: grid; .liste-filets(@filet-fort; 0.75rem 0);
+  li { color: @ardoise; font-size: 0.93rem; line-height: 1.45; }
+  strong { display: block; color: @nuit; font-weight: 600; font-size: 0.98rem; }
+}
+@media (min-width: @r-640) {
+  .titres { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+  .titres li:nth-last-child(2) { border-bottom: 1px solid @filet-fort; }
+}
+
+// ---------- Étapes d'une thérapie (accueil) ----------
+.etapes {
+  margin: 0; .liste-filets(@filet-fort; 1.3rem 0);
+  dt { .titre(@titre-3; @interligne-serre); margin-bottom: 0.45rem; }
+  dd { margin: 0; max-width: 38em; color: @ardoise; }
+}
+
+// ---------- Infos pratiques : une ligne sobre, séparée par des points ----------
+.infos-pratiques {
+  list-style: none; margin: 1rem 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 0; font-size: @taille-petit; color: @ardoise;
+  li { display: inline-flex; align-items: center; }
+  li:not(:last-child)::after { content: "·"; margin: 0 0.6rem; color: @brun-rouge; font-weight: 700; }
+  .sans-puces-texte();
+}
+.infos-pratiques--sombre {
+  color: @pied-texte;
+  li:not(:last-child)::after { color: @or-clair; }
+}

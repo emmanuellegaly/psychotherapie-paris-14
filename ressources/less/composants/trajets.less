@@ -1,0 +1,52 @@
+// =====================================================================
+// VENIR AU CABINET : liste des stations (boutons) reliée au carrousel des trajets à pied,
+// pictogrammes métro / RER, adresse.
+// =====================================================================
+
+// ---------- Adresse ----------
+.venir-adresse, .prdv-adresse { font-style: normal; font-size: 1.12rem; font-weight: 600; }
+
+// ---------- Pictogrammes métro / RER ----------
+.picto { display: inline-grid; place-items: center; flex: none; min-width: 1.6rem; height: 1.6rem; padding: 0 0.3rem; font-size: @taille-sur-titre; font-weight: 700; line-height: 1; }
+.picto-metro { border-radius: 50%; background: @nuit; color: @blanc; width: 1.6rem; padding: 0; }
+.picto-rer { border-radius: 4px; background: @nuit; color: @blanc; font-size: 0.66rem; letter-spacing: 0.04em; }
+.picto-ligne { border-radius: 50%; border: 1.5px solid @nuit; color: @nuit; width: 1.6rem; padding: 0; }
+
+// ---------- Liste des stations ----------
+.acces-liste {
+  list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 0.35rem;
+  .sans-puces-texte();
+}
+.acces-choix {
+  width: 100%; display: flex; align-items: center; gap: 0.4rem; text-align: left; font: inherit; color: @nuit;
+  background: transparent; border: 0; border-left: 2px solid transparent; border-bottom: 1px solid @filet;
+  padding: 0.8rem 1rem; cursor: pointer; transition: background-color .2s ease, border-color .2s ease;
+  &:hover { background: @platre; }
+  &:focus-visible { outline: 3px solid @nuit; outline-offset: 2px; }
+  &[aria-pressed="true"] { background: @platre; border-left-color: @moutarde; border-bottom-color: transparent; }
+  // même taille sélectionné ou non : pas de saut de mise en page quand le carrousel tourne
+  strong { display: block; .titre(1.35rem; 1.15); }
+}
+.acces-texte { margin-left: 0.4rem; }
+.acces-detail { display: block; font-size: @taille-petit; color: @ardoise; }
+
+// ---------- Carrousel des trajets à pied ----------
+.trajets { display: grid; gap: 0.8rem; min-width: 0; }
+.trajets-piste {
+  // position relative : les textes cachés des trajets restent dans le carrousel (pas de débordement)
+  position: relative; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  border: 1px solid @filet-cadre; border-radius: 4px; background: @platre; scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  &:focus-visible { outline: 3px solid @nuit; outline-offset: 2px; }
+}
+.trajet {
+  flex: 0 0 100%; margin: 0; scroll-snap-align: start; display: grid;
+  a { display: block; }
+  img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+  figcaption { padding: 0.7rem 0.9rem; font-size: @taille-petit; color: @ardoise; background: @blanc; border-top: 1px solid @filet-cadre; }
+  figcaption strong { color: @nuit; font-weight: 600; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trajets-piste { scroll-behavior: auto; }
+  .acces-choix { transition: none; }
+}

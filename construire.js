@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 // Construit le site statique dans docs/ à partir de contenu/, gabarits/ et ressources/.
-// Aucune dépendance : Node.js seul. Usage : node construire.js
+// Seule dépendance : le compilateur LESS officiel (styles), installé par « npm install ». Usage : node construire.js
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+let less;
+try { less = require('less'); }
+catch { console.error('Compilateur LESS absent : lancer « npm install » dans ce dossier.'); process.exit(1); }
 
 const RACINE = __dirname;
 const SORTIE = path.join(RACINE, 'docs');
@@ -383,15 +386,28 @@ function copierDossier(de, vers) {
 }
 
 // ---------- Programme principal ----------
-function construire() {
+// Compile une feuille LESS de ressources/less/ en CSS minifié (le site publié ne contient que du CSS).
+async function compilerLess(nom) {
+  const fichier = path.join(RESSOURCES, 'less', nom + '.less');
+  try {
+    const r = await less.render(lire(fichier), { filename: fichier, math: 'strict', strictUnits: true, compress: true });
+    return r.css + '\n';
+  } catch (e) {
+    throw new Error(`Erreur LESS dans ${e.filename || fichier}, ligne ${e.line} : ${e.message}`);
+  }
+}
+
+async function construire() {
+  // Feuilles de style : sources LESS (ressources/less/) compilées et minifiées AVANT de vider docs/
+  // (une erreur de style n'efface pas le site). ?v= = empreinte du CSS produit, pour le cache.
+  const css = await compilerLess('site');
+  const cssAccueil = await compilerLess('accueil');
+
   fs.rmSync(SORTIE, { recursive: true, force: true });
   fs.mkdirSync(SORTIE, { recursive: true });
 
-  // Feuille de style : thème (couleurs, polices) + mise en page, réunis en un seul fichier
-  const css = ['theme.css', 'site.css'].map(f => lire(path.join(RESSOURCES, 'css', f))).join('\n');
   versionCss = crypto.createHash('sha1').update(css).digest('hex').slice(0, 8);
   ecrireSortie('css/site.css', css);
-  const cssAccueil = lire(path.join(RESSOURCES, 'css', 'accueil.css'));
   versionAccueil = crypto.createHash('sha1').update(cssAccueil).digest('hex').slice(0, 8);
   ecrireSortie('css/accueil.css', cssAccueil);
   // Scripts (menu, apparitions, ouverture animée + Three.js) et polices auto-hébergées
@@ -426,8 +442,8 @@ function construire() {
 
   const poids = resultats.filter(r => !r.chemin.endsWith('.html')).map(r => r.poids);
   console.log(`Site construit dans docs/ : ${resultats.length} pages, ${redirections.length} redirection(s), ${urls.length} adresses dans le plan du site.`);
-  console.log(`Poids HTML moyen : ${(poids.reduce((a, b) => a + b, 0) / poids.length / 1024).toFixed(1)} Ko ; feuille de style : ${(Buffer.byteLength(css) / 1024).toFixed(1)} Ko.`);
+  console.log(`Poids HTML moyen : ${(poids.reduce((a, b) => a + b, 0) / poids.length / 1024).toFixed(1)} Ko ; feuilles de style : ${(Buffer.byteLength(css) / 1024).toFixed(1)} Ko (+ accueil ${(Buffer.byteLength(cssAccueil) / 1024).toFixed(1)} Ko).`);
   for (const a of new Set(avertissements)) console.warn('Attention : ' + a);
 }
 
-construire();
+construire().catch(e => { console.error(e.message); process.exit(1); });

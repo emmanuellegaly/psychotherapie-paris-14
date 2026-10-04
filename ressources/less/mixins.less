@@ -1,0 +1,106 @@
+// =====================================================================
+// MIXINS : les briques visuelles réutilisées par les composants.
+// Ce fichier ne produit aucun CSS tout seul (les mixins avec parenthèses ne sont pas émis).
+// =====================================================================
+
+// ---------- Titres ----------
+// Tout titre : Prata, romain, bleu nuit. @taille vient de l'échelle de variables.less.
+.titre(@taille; @interligne: @interligne-titre) {
+  font-family: @police-titre; font-weight: 400; font-style: normal;
+  font-size: @taille; line-height: @interligne;
+}
+// Grand titre (titre de page, de section) : léger resserrement des lettres.
+.titre-serre(@taille; @interligne: 1.06) {
+  .titre(@taille; @interligne);
+  letter-spacing: -0.01em;
+}
+
+// Sur-titre en petites capitales laiton (« Les séances », « Venir », « En pratique »…)
+.style-sur-titre(@couleur: @laiton-texte) {
+  font-family: @police-texte; font-style: normal; font-size: @taille-sur-titre; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: @couleur; line-height: 1.4;
+}
+// Étiquette plus discrète (intitulés de listes, fil d'Ariane)
+.etiquette(@couleur: @laiton-texte) {
+  font-size: @taille-etiquette; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: @couleur;
+}
+// Date et catégorie d'un article
+.meta-article() {
+  font-size: @taille-sur-titre; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: @laiton-texte;
+}
+
+// ---------- Chiffres ----------
+// Chiffres clés (Une, 50, 90) : Prata droit, chiffres alignés, partout la même taille.
+.style-chiffre-cle() {
+  font-family: @police-titre; font-weight: 400; font-style: normal;
+  font-size: @chiffre-cle; line-height: 1; font-variant-numeric: lining-nums;
+}
+
+// ---------- Citations (seul usage de l'italique de titre) ----------
+.citation-texte(@taille: @citation; @interligne: 1.35) {
+  font-family: @police-titre; font-style: italic; font-size: @taille; line-height: @interligne;
+}
+
+// Légende d'image : Prata droit, ardoise
+.legende() {
+  font-family: @police-titre; font-style: normal; color: @ardoise;
+}
+
+// ---------- Motifs du tableau ----------
+// fil de points horizontal (sous les titres, devant les sur-titres)
+.fil-de-points(@largeur: 2.6rem) {
+  width: @largeur; height: 4px;
+  background: radial-gradient(circle, @brun-rouge 1.3px, transparent 1.6px) 0 50% / 6.5px 4px repeat-x;
+}
+// fil de points vertical
+.fil-de-points-vertical(@hauteur: 4.6rem) {
+  width: 4px; height: @hauteur;
+  background: radial-gradient(circle, @brun-rouge 1.3px, transparent 1.6px) 50% 0 / 4px 6.5px repeat-y;
+}
+// lignes parallèles du tableau
+.motif-lignes(@angle: 135deg) {
+  background: repeating-linear-gradient(@angle, @brun-rouge 0 2px, transparent 2px 7px);
+}
+// coin de lignes parallèles en haut à droite d'un encart
+.coin-lignes(@taille: 84px) {
+  position: relative; overflow: hidden;
+  &::after {
+    content: ""; position: absolute; right: -14px; top: -14px; width: @taille; height: @taille; pointer-events: none;
+    .motif-lignes(); opacity: .25; clip-path: polygon(0 0, 100% 0, 100% 100%);
+  }
+  > * { position: relative; z-index: 1; }
+}
+
+// ---------- Encarts ----------
+// Fond plâtre, filet moutarde en haut, même marge intérieure partout.
+.encart-fond(@marge: @encart-marge) {
+  background: @platre; border-top: 2px solid @moutarde; padding: @marge;
+}
+
+// ---------- Listes ----------
+// Liste à filets : un filet au-dessus de chaque élément, un sous le dernier (marges extérieures laissées à la liste).
+.liste-filets(@couleur: @filet; @espace: 0.75rem 0) {
+  list-style: none; padding: 0;
+  > li, > div { padding: @espace; border-top: 1px solid @couleur; }
+  > li:last-child, > div:last-child { border-bottom: 1px solid @couleur; }
+}
+// Dans une colonne de lecture (.texte), annule les tirets des listes courantes.
+.sans-puces-texte() {
+  .texte & li { padding-left: 0; margin: 0; }
+  .texte & li::before { display: none; content: none; }
+}
+
+// ---------- Liens ----------
+.fleche-apres() {
+  &::after { content: "\2009→"; color: @laiton-texte; }
+}
+.souligne-au-survol(@couleur: @laiton) {
+  text-decoration: none;
+  &:hover { text-decoration: underline; text-decoration-color: @couleur; }
+}
+
+// ---------- Mise en page ----------
+// Conteneur large centré (en-tête, accueil, pied de page) : largeur maximale + gouttières.
+.conteneur-large(@largeur-max: @largeur) {
+  max-width: @largeur-max; margin-inline: auto; padding-inline: @gouttiere;
+}

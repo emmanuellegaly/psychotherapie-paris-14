@@ -1,0 +1,53 @@
+// =====================================================================
+// TITRES, SUR-TITRES ET CHAPEAUX
+// Une seule police de titre (Prata, droit) et une taille par niveau (voir variables.less) :
+//   titre de page (h1)        .page-entete h1, .prdv-entete h1, .erreur h1   → @titre-page
+//   titre d'ouverture         .h1-titre (premier écran de l'accueil)         → @titre-ouverture
+//   titre de section (h2)     .titre-grand, .titre-section, .prdv-titre      → @titre-section
+//   intertitre (h2 du texte)  .texte h2, .articles-lies__titre               → @intertitre
+// Les titres d'encarts, de cartes et les h3 sont dans leurs composants.
+// =====================================================================
+
+// ---------- Titre de page (h1) et son fil de points ----------
+.page-entete {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  h1 { .titre-serre(@titre-page); max-width: 20ch; }
+}
+.prdv-entete h1 { .titre-serre(@titre-page); }
+.page-entete::after, .prdv-entete::after { // fil de points du tableau, sous le titre
+  content: ""; display: block; margin-top: 1.5rem; .fil-de-points();
+}
+.page-entete__meta { .meta-article(); margin-bottom: 0.8rem; }
+
+// ---------- Titre d'ouverture (accueil) ----------
+.h1-titre { display: block; .titre(@titre-ouverture; 1.02); letter-spacing: -0.012em; text-wrap: balance; }
+
+// ---------- Titre de section ----------
+.titre-grand, .titre-section, .prdv-titre { .titre-serre(@titre-section; 1.08); margin: 0 0 1.25rem; text-wrap: balance; }
+
+// ---------- Sur-titres en capitales laiton ----------
+.sur-titre, .h1-sur, .prdv-sur, .venir-sous-titre, .fiche-titre, .accueil-sur, .rencontre-titre,
+.encart-horaires__titre, .appel__titre, .repere, .prdv-repere,
+.citation-marge figcaption, .tableau-citation figcaption { .style-sur-titre(); }
+
+.h1-sur { display: block; margin-bottom: 1rem; }
+.prdv-sur { margin: 0 0 0.55rem; }
+.venir-sous-titre { margin: 0 0 0.9rem; }
+.rencontre-titre { margin-top: -0.6rem; margin-bottom: 1.4rem; }
+.accueil-sur { color: @or-clair; }
+.tableau-citation figcaption { color: @brun-rouge; }
+
+// repère de section : un fil de points puis le mot (« Venir », « Commencer »…)
+.repere, .prdv-repere {
+  display: flex; align-items: center; gap: 0.9rem; margin: 0 0 1rem;
+  &::before { content: ""; flex: none; .fil-de-points(); }
+}
+
+// ---------- Chapeaux (texte d'introduction) ----------
+.page-entete__chapo, .chapo, .chapeau, .chapeau-section, .texte--chapo-auto > p:first-child {
+  font-size: @chapo; line-height: 1.58;
+}
+.chapo, .texte--chapo-auto > p:first-child { color: @nuit; }
+.page-entete__chapo { max-width: 36em; margin: 1.25rem 0 0; color: @ardoise; }
+.chapeau { margin-top: 1.4rem; max-width: @largeur-chapo; color: @ardoise; }
+.chapeau-section { max-width: @largeur-chapo; }

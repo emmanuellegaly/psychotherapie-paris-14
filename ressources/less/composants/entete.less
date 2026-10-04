@@ -1,0 +1,46 @@
+// =====================================================================
+// EN-TÊTE ET MENU : signature (nom + métier), navigation, bouton « Menu » sur mobile.
+// =====================================================================
+
+.entete { position: relative; z-index: 20; background: @blanc; }
+.entete-ligne {
+  .conteneur-large(); padding-block: 1rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1rem;
+}
+.page-interieure .entete { border-bottom: 1px solid @filet; }
+
+.signature { text-decoration: none; display: flex; flex-direction: column; line-height: 1.15; }
+.signature-nom { font-family: @police-titre; font-size: 1.3rem; letter-spacing: 0.005em; }
+.signature-metier { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: @laiton-texte; margin-top: 0.3rem; }
+
+.navigation {
+  ul { list-style: none; margin: 0; padding: 0; }
+  a:not(.bouton) { font-size: 0.95rem; .souligne-au-survol(); }
+  a[aria-current="page"] { text-decoration: underline; text-decoration-color: @moutarde; text-decoration-thickness: 2px; text-underline-offset: 0.45em; }
+}
+.navigation-tel { font-weight: 600; }
+.menu-bouton {
+  display: none; flex: none;
+  font: inherit; font-weight: 600; font-size: 0.95rem; color: @nuit;
+  background: none; border: 1px solid @nuit; padding: 0.55rem 1rem; min-height: 2.75rem; cursor: pointer;
+}
+
+@media (max-width: (@r-960 - @moins)) {
+  .js .menu-bouton { display: inline-block; }
+  .navigation { width: 100%; }
+  .navigation ul { display: grid; margin-bottom: 1rem; }
+  .navigation li a { display: block; padding: 0.8rem 0; border-bottom: 1px solid @filet; }
+  .navigation-tel { display: block; margin-bottom: 1rem; }
+  .js .navigation { display: none; padding-bottom: 1.25rem; }
+  .js .navigation.est-ouverte { display: block; }
+  html:not(.js) .navigation ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.2rem; }
+  html:not(.js) .navigation li a { border: 0; padding: 0.4rem 0; }
+}
+@media (min-width: @r-960) {
+  .signature-nom { font-size: 1.45rem; }
+  .signature-metier { font-size: @taille-sur-titre; letter-spacing: 0.12em; }
+  .entete-ligne { flex-wrap: nowrap; gap: 1.5rem; }
+  .navigation { display: flex; align-items: center; gap: 2rem; }
+  .navigation ul { display: flex; gap: 1.6rem; }
+  .navigation-tel { display: none; }
+}

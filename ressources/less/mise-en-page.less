@@ -1,0 +1,27 @@
+// =====================================================================
+// MISE EN PAGE COMMUNE : conteneurs, colonne + barre latérale, sections.
+// Mobile d'abord ; élargissements aux points de rupture de variables.less.
+// =====================================================================
+
+// Conteneur des pages intérieures (largeur de page + gouttières)
+.enveloppe { width: 100%; max-width: calc(@largeur-page + 2 * @gouttiere); margin-inline: auto; padding-inline: @gouttiere; }
+
+// Page intérieure : haut léger, bas = espace entre sections
+.page { padding-top: clamp(1.5rem, 3vw, 2.5rem); padding-bottom: @espace-section; }
+
+// Page avec barre latérale (colonne de lecture + encarts)
+.barre-laterale { display: grid; gap: 1.75rem; align-content: start; margin-top: 3rem; }
+@media (min-width: @r-960) {
+  .page.avec-barre { display: grid; grid-template-columns: minmax(0, 1fr) 19.5rem; column-gap: @colonnes; align-items: start; }
+  .page.avec-barre .fil-ariane { grid-column: 1 / -1; }
+  .barre-laterale { margin-top: 0; position: sticky; top: 1.5rem; }
+  // page sans barre latérale : le texte s'étale, les paragraphes gardent la largeur de lecture
+  .page.sans-barre .texte { max-width: none; }
+  .page.sans-barre .texte > p, .page.sans-barre .texte > h2, .page.sans-barre .texte > ul { max-width: @largeur-texte; }
+}
+@media (min-width: @r-1100) {
+  .page.avec-barre { grid-template-columns: minmax(0, 1fr) @largeur-barre; }
+}
+
+// Section espacée de la précédente (même espace vertical sur toutes les pages)
+.section { padding-top: @espace-section; }

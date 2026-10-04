@@ -1,0 +1,83 @@
+// =====================================================================
+// PAGE « PRENDRE RENDEZ-VOUS » : agencement seulement.
+// Une seule grille coupée au même endroit (5 | 7) dans chaque section :
+//   1. prendre contact (titre, séances et appeler à gauche ; écrire à droite),
+//   2. le premier rendez-vous (photo | texte),
+//   3. venir au cabinet (stations | trajets ; puis arrivée | horaires).
+// Mobile d'abord ; élargissements à 700 et 940 px.
+// =====================================================================
+
+.page--libre { padding-top: clamp(1rem, 2vw, 1.5rem); }
+.page--libre .fil-ariane { margin-bottom: clamp(1rem, 2.4vw, 1.75rem); }
+#ecrire, #venir { scroll-margin-top: 5.5rem; }
+body:has(.page--rdv) .barre-rdv { display: none; } // le numéro et le bouton sont déjà en haut de cette page
+
+// ---------- 1. Prendre contact ----------
+.prdv-ouverture { display: grid; gap: 1.5rem; grid-template-areas: "entete" "appel" "ecrire" "seances"; }
+.prdv-entete { grid-area: entete; }
+.prdv-appel { grid-area: appel; }
+.prdv-appel__action .bouton { min-width: 9rem; }
+.prdv-ecrire { grid-area: ecrire; }
+.prdv-seances { grid-area: seances; }
+
+@media (min-width: @r-700) {
+  .prdv-ouverture {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "entete entete" "appel seances" "ecrire ecrire";
+    column-gap: @colonnes-serrees; align-items: end;
+  }
+  .prdv-entete { margin-bottom: 0.25rem; }
+}
+@media (min-width: @r-940) {
+  .prdv-ouverture {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto auto 1fr;
+    grid-template-areas: "entete ecrire" "seances ecrire" "appel ecrire"; row-gap: clamp(1.75rem, 2.6vw, 2.25rem); align-items: start;
+  }
+  .prdv-entete { margin: 0; }
+  .prdv-appel { align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+}
+
+// ---------- 2. Le premier rendez-vous ----------
+.prdv-section { padding-top: @espace-section; }
+.prdv-premier { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-areas: "photo titre" "texte texte"; gap: 1.5rem 1.25rem; align-items: center; }
+.prdv-premier__photo { grid-area: photo; margin: 0; }
+.prdv-premier__photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 60%; }
+.prdv-premier__titre { grid-area: titre; }
+.prdv-premier__titre .prdv-titre { margin: 0; }
+.prdv-premier__texte { grid-area: texte; }
+.prdv-etapes p { margin: 0 0 1rem; padding-top: 0.85rem; border-top: 1px solid @filet-fort; }
+.prdv-premier__lien { margin: 0.4rem 0 0; }
+@media (min-width: @r-700) {
+  .prdv-premier {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr;
+    grid-template-areas: "photo titre" "photo texte"; column-gap: @colonnes-serrees; row-gap: 0; align-items: stretch;
+  }
+  .prdv-premier__photo { position: relative; min-height: 18rem; }
+  .prdv-premier__photo img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+  .prdv-premier__titre .prdv-titre { margin-bottom: 1.25rem; }
+}
+@media (min-width: @r-940) {
+  .prdv-premier { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .prdv-etapes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: @colonnes-serrees; }
+  .prdv-etapes p { margin-bottom: 1.25rem; }
+}
+
+// ---------- 3. Venir au cabinet ----------
+.prdv-venir { display: grid; gap: 1.5rem; grid-template-areas: "infos" "trajets" "horaires" "arrivee"; }
+.prdv-venir__infos { grid-area: infos; }
+.prdv-adresse { margin: -0.3rem 0 1.5rem; }
+.prdv-venir .acces-liste { margin: 0; }
+.prdv-venir .trajets { grid-area: trajets; }
+.prdv-venir .trajet img { aspect-ratio: 4 / 3; object-position: 50% 50%; }
+.prdv-venir #trajet-alesia img { object-position: 50% 88%; }
+.prdv-horaires { grid-area: horaires; }
+.prdv-arrivee { grid-area: arrivee; }
+.prdv-arrivee p { margin: 0 0 0.6rem; }
+.prdv-arrivee .infos-pratiques { margin: 0; }
+@media (min-width: @r-700) {
+  .prdv-venir { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "infos infos" "trajets trajets" "horaires arrivee"; column-gap: @colonnes-serrees; }
+  .prdv-horaires { display: flex; flex-direction: column; justify-content: center; }
+}
+@media (min-width: @r-940) {
+  .prdv-venir { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "infos trajets" "arrivee horaires"; row-gap: 1.75rem; }
+  .prdv-venir__infos { align-self: start; }
+}

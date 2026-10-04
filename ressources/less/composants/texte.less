@@ -1,0 +1,36 @@
+// =====================================================================
+// COLONNE DE LECTURE (.texte) : intertitres, listes, numéros, remarques, format entretien.
+// =====================================================================
+
+.texte {
+  max-width: @largeur-texte;
+  &::after { content: ""; display: table; clear: both; }
+  h2 { .titre(@intertitre; 1.12); letter-spacing: -0.005em; margin: 2.6rem 0 1rem; clear: both; }
+  h2:first-child { margin-top: 0; }
+  h3 { .titre(@titre-3; @interligne-serre); margin: 1.8rem 0 0.6rem; }
+  ul, ol { padding-left: 0; list-style: none; }
+  ul > li { position: relative; padding-left: 1.2rem; margin-bottom: 0.45rem; }
+  ul > li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.55rem; height: 1px; background: @laiton; }
+  ol { counter-reset: num; }
+  ol > li { counter-increment: num; position: relative; padding-left: 2.2rem; margin-bottom: 0.55rem; }
+  ol > li::before { // numéro en Prata droit, comme les chiffres clés
+    content: counter(num); position: absolute; left: 0; top: -0.05em;
+    .titre(1.25rem; 1.4); color: @brun-rouge; font-variant-numeric: lining-nums;
+  }
+}
+.remarque { font-style: italic; color: @ardoise; }
+.source-code { .titre(1.15rem; 1.4); }
+.reference-livre { padding-left: 1.25rem; border-left: 1px solid @laiton; }
+
+// ---------- Article au format entretien ----------
+.page--entretien .page-entete__chapo { .titre(@chapo; 1.5); color: @nuit; max-width: @largeur-chapo; }
+.texte .entretien__question {
+  margin: 2.2rem 0 1rem; padding: 0.15rem 0 0.15rem 1.1rem; border-left: 2px solid @moutarde;
+  font-weight: 600; font-size: 1.06em; line-height: 1.5; color: @nuit;
+}
+.texte h2 + .entretien__question { margin-top: 0; }
+.texte .entretien__fin {
+  margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid @filet;
+  .titre(1.12rem; 1.55); color: @ardoise;
+  &::before { content: ""; display: block; margin-bottom: 1rem; .fil-de-points(); }
+}

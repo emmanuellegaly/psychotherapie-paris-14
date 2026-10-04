@@ -1,0 +1,13 @@
+{
+  "name": "site-emmanuelle-galy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site statique d'Emmanuelle Galy, psychothérapeute à Paris 14e : construction par construire.js, styles en LESS.",
+  "scripts": {
+    "construire": "node construire.js",
+    "servir": "node servir.js"
+  },
+  "devDependencies": {
+    "less": "4.9.1"
+  }
+}

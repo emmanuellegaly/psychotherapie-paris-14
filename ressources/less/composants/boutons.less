@@ -1,0 +1,35 @@
+// =====================================================================
+// BOUTONS ET LIENS D'ACTION
+// .bouton (moutarde), .bouton-petit, .lien-suite / .lien-fleche (lien souligné + flèche),
+// .lien-tel (numéro + mention), .actions (rangée de boutons).
+// =====================================================================
+
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem; padding: 0.75rem 1.6rem;
+  background: @moutarde; color: @nuit;
+  font-weight: 600; font-size: 0.98rem; line-height: 1.25; letter-spacing: 0.02em;
+  text-decoration: none; border: 1px solid @moutarde;
+  transition: background-color @transition, border-color @transition;
+  &:hover { background: @moutarde-survol; border-color: @moutarde-survol; color: @nuit; }
+}
+.bouton-petit { min-height: 2.6rem; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
+
+// lien souligné d'un filet de laiton, suivi d'une flèche
+.lien-suite, .lien-fleche {
+  display: inline-block; font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid @laiton; padding-bottom: 0.15rem;
+  transition: border-color @transition;
+  .fleche-apres();
+  &:hover { border-color: @nuit; }
+}
+
+// numéro de téléphone avec une petite mention dessous
+.lien-tel {
+  text-decoration: none; font-weight: 600; font-size: 1.05rem; display: inline-flex; flex-direction: column; line-height: 1.25;
+  &:hover { text-decoration: underline; text-decoration-color: @laiton; }
+}
+.lien-tel-mention { font-weight: 400; font-size: @taille-mention; color: @ardoise; }
+
+// rangée de boutons et de liens
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }

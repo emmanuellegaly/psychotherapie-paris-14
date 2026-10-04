@@ -11,7 +11,8 @@ publiées par GitHub Pages à partir du dossier `docs/`.
 | `contenu/site.json` | Informations communes : coordonnées du cabinet, menu, pied de page, données structurées |
 | `contenu/redirections.json` | Anciennes adresses redirigées vers les nouvelles |
 | `gabarits/` | Modèles HTML communs à toutes les pages |
-| `ressources/` | Feuilles de style, scripts, polices (licence OFL), images, icônes |
+| `ressources/less/` | Feuilles de style en LESS (variables, composants partagés, pages), compilées en CSS par `construire.js` |
+| `ressources/` | Scripts, polices (licence OFL), images, icônes |
 | `outils/` | Préparation des images (redimensionnement, retrait des métadonnées) et des icônes |
 | `construire.js` | Fabrique le site final dans `docs/` |
 | `servir.js` | Aperçu local sur http://localhost:8080 |
@@ -20,9 +21,10 @@ publiées par GitHub Pages à partir du dossier `docs/`.
 
 ## Fabriquer le site
 
-Seul outil nécessaire : Node.js, sans aucune librairie à installer.
+Outils nécessaires : Node.js et le compilateur LESS officiel (version épinglée dans `package.json`).
 
 ```
+npm install
 node construire.js
 node verifier.js
 ```

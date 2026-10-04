@@ -1,0 +1,12 @@
+// =====================================================================
+// FIL D'ARIANE (Accueil · Rubrique · Page), en étiquettes laiton séparées par un point brun-rouge
+// =====================================================================
+
+.fil-ariane {
+  .etiquette(); margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; row-gap: 0.25rem; }
+  li + li::before { content: "·"; margin-inline: 0.6rem; color: @brun-rouge; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  [aria-current] { color: @ardoise; }
+}

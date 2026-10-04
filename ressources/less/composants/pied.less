@@ -1,0 +1,34 @@
+// =====================================================================
+// PIED DE PAGE (bleu nuit, lisière de points du tableau)
+// =====================================================================
+
+.pied {
+  position: relative; background: @nuit; color: @pied-texte; padding: clamp(3rem, 6vw, 5rem) 0 2rem; font-size: 0.95rem;
+  &::before { // lisière de points, reprise du tableau
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px;
+    background: radial-gradient(circle, @sable 1.4px, transparent 1.7px) 0 50% / 9px 6px repeat-x; opacity: .7;
+  }
+  :focus-visible { outline-color: @or-clair; }
+  a { color: inherit; text-decoration-color: @or-filet; }
+  a:hover { color: @blanc-pur; text-decoration-color: @or-clair; }
+  p { margin-bottom: 0.75rem; }
+  .bouton { margin-top: 0.5rem; }
+  .bouton:hover { color: @nuit; }
+}
+.pied-interieur { .conteneur-large(); display: grid; gap: 2.5rem; }
+.pied-nom { font-family: @police-titre; font-size: 1.7rem; color: @blanc-pur; margin-bottom: 0.75rem; }
+.pied-liens {
+  display: grid; gap: 0.5rem 2rem;
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { padding: 0.35rem 0; }
+}
+.pied-discret { font-size: 0.85rem; opacity: .9; }
+.pied-mention {
+  .conteneur-large(); margin-top: 3rem; padding-top: 1.25rem;
+  font-size: @taille-mention; color: @pied-doux; border-top: 1px solid @or-filet-doux;
+  p { margin: 0; }
+}
+@media (min-width: @r-760) {
+  .pied-interieur { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .pied-liens { grid-template-columns: 1fr 1fr; }
+}

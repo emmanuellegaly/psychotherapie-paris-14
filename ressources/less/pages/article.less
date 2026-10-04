@@ -1,0 +1,10 @@
+// =====================================================================
+// ARTICLES : agencement de la fin d'article (encart rendez-vous, « À lire aussi »).
+// Les styles visuels viennent des composants (encarts, liste d'articles, texte).
+// =====================================================================
+
+.apres-article { max-width: @largeur-texte; margin-top: 3rem; }
+.articles-lies { max-width: @largeur-texte; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+@media (min-width: @r-700) {
+  .articles-lies .carte-article { grid-template-columns: 9rem 1fr; gap: 1.4rem; }
+}

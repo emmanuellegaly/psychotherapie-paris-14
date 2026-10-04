@@ -1,0 +1,128 @@
+// =====================================================================
+// PAGE D'ACCUEIL (direction A1 « Le seuil ») : agencement des sections.
+// Les titres, encarts, chiffres, listes, citations et motifs viennent des composants (site.css).
+// =====================================================================
+
+@chevauchement-accueil: clamp(3rem, 7vw, 6rem); // l'espace d'accueil (bleu nuit) remonte sous la photo du lieu
+
+.accueil-the :focus-visible { outline-color: @or-clair; }
+
+// ---------- Premier écran : plaque de titre et repères ----------
+.seuil-plaque {
+  position: relative; background: @blanc;
+  margin: -2.75rem 1.25rem 0 0; padding: 1.75rem 1.25rem 0 0;
+  &::before { content: ""; position: absolute; left: 0; top: 0; width: 3.5rem; height: 1px; background: @laiton; } // montant en laiton
+  .actions { margin-top: 1.75rem; }
+}
+.seuil-repere {
+  list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; border-top: 1px solid @filet-fort;
+  li { border-bottom: 1px solid @filet-doux; }
+  a { display: block; padding: 0.85rem 1.6rem 0.85rem 0; text-decoration: none; font-size: 0.97rem; line-height: 1.45; position: relative; }
+  a::after { content: "→"; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); color: @laiton-texte; transition: transform .2s ease; }
+  a:hover::after { transform: translate(3px, -50%); }
+}
+.repere-titre { display: block; .etiquette(); margin-bottom: 0.1rem; }
+@media (min-width: @r-900) {
+  .seuil-bas { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: @colonnes; align-items: end; }
+  .seuil-plaque { margin: -8.5rem 0 0 clamp(1.5rem, 4vw, 4.5rem); padding: 2.5rem clamp(2rem, 3.5vw, 3.75rem) 0 clamp(2rem, 3.5vw, 3.75rem); }
+  .seuil-plaque::before { width: 1px; height: 100%; top: 0; left: 0; }
+  .seuil-repere { margin: 0; }
+}
+
+// ---------- Chapitres de la visite ----------
+.chapitre { .conteneur-large(); padding-top: @espace-section; }
+@media (min-width: @r-1100) {
+  .chapitre { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); column-gap: clamp(2rem, 4vw, 4.5rem); }
+  .repere { position: sticky; top: 5.5rem; align-self: start; flex-direction: column; gap: 1.1rem; margin: 0.4rem 0 0; }
+  .repere::before { order: 2; .fil-de-points-vertical(); }
+  .repere span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; }
+}
+
+// ---------- Ce qui peut vous amener ----------
+.amene { display: grid; gap: 2.5rem; }
+.amene-listes { display: grid; gap: 2rem; }
+.amene .citation-marge { padding: 1.5rem 0 0; border-top: 1px solid @laiton; max-width: 46rem; }
+@media (min-width: @r-700) {
+  .amene-listes { grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 3vw, 3rem); }
+}
+@media (min-width: @r-900) {
+  .amene { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: @colonnes; row-gap: 2.25rem; }
+  .amene-intro { grid-row: 1 / span 2; }
+  .amene .citation-marge { grid-column: 2; grid-row: 2; }
+}
+
+// ---------- S'asseoir ----------
+.contact { display: grid; gap: 2.25rem; }
+.contact-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 70%; }
+.contact-texte > p { max-width: 36em; }
+@media (min-width: @r-900) {
+  .contact { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: @colonnes; align-items: start; }
+  .contact-photo img { aspect-ratio: 3 / 4; object-position: 55% 75%; }
+  .contact-image { position: sticky; top: 5rem; }
+}
+
+// ---------- Rencontrer ----------
+.rencontre { display: grid; gap: 2.25rem; }
+.rencontre-texte > p { max-width: 36em; }
+.rencontre-portrait { max-width: 24rem; position: relative; z-index: 0; }
+.rencontre-portrait img { width: 100%; position: relative; }
+@media (min-width: @r-900) {
+  .rencontre { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: @colonnes; align-items: start; }
+  .rencontre-cote { position: sticky; top: 5rem; padding-top: 1.25rem; }
+  .rencontre-portrait { max-width: none; }
+  .rencontre-portrait::before { // chêne clair derrière le portrait
+    content: ""; position: absolute; z-index: -1; right: -1.25rem; top: -1.25rem; width: 62%; height: 55%; background: @chene; opacity: .5;
+  }
+}
+
+// ---------- Le rythme ----------
+.rythme { display: grid; gap: 2.5rem; }
+.fiche { align-self: start; }
+@media (min-width: @r-900) {
+  .rythme { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: @colonnes; align-items: start; }
+  .fiche { position: sticky; top: 5rem; margin-top: 0.5rem; }
+}
+
+// ---------- Le lieu et l'espace d'accueil ----------
+.lieu { display: grid; gap: 2.25rem; }
+.lieu-photo { max-width: 30rem; justify-self: end; width: 88%; }
+.chapitre-lieu { position: relative; z-index: 1; }
+@media (min-width: @r-900) {
+  .lieu { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: @colonnes; align-items: center; }
+  .lieu-texte { padding-bottom: clamp(4rem, 8vw, 7rem); }
+  .lieu-photo { width: 100%; max-width: 27rem; }
+}
+.accueil-the {
+  background: @nuit-accueil; color: @blanc;
+  margin-top: calc(-1 * @chevauchement-accueil);
+  padding: calc(@chevauchement-accueil + 3rem) 0 clamp(3.5rem, 7vw, 6rem);
+  border-top: 1px solid @laiton;
+}
+.accueil-the-interieur { .conteneur-large(); display: grid; gap: 2rem; }
+.accueil-texte p { max-width: 30em; color: @pied-texte; }
+.accueil-texte .titre-grand { color: @blanc; }
+@media (min-width: @r-900) {
+  .accueil-the-interieur { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: @colonnes; align-items: center; }
+}
+
+// ---------- À lire ----------
+.lire { display: grid; gap: 2.25rem; }
+.lire-image { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; margin: 1.75rem 0; }
+@media (min-width: @r-900) {
+  .lire { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: @colonnes; align-items: start; }
+  .article-une { padding-top: 0; border-top: 0; }
+}
+
+// ---------- Le tableau ----------
+.tableau-interieur { .conteneur-large(); display: grid; gap: 2rem; }
+@media (min-width: @r-900) {
+  .tableau-interieur { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(2.5rem, 5vw, 5rem); align-items: center; }
+}
+
+// ---------- Venir ----------
+.venir { display: grid; gap: 2.5rem; }
+.venir-adresse { margin: -0.4rem 0 2rem; }
+.encart-horaires { grid-column: 1 / -1; justify-self: center; margin: 0.5rem auto 0; }
+@media (min-width: @r-900) {
+  .venir { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem @colonnes; align-items: stretch; }
+}

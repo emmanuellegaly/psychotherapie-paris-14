@@ -1,0 +1,14 @@
+// =====================================================================
+// PAGES INTÉRIEURES : agencement propre à certaines pages (aucun style visuel ici).
+// =====================================================================
+
+// ---------- Page 404 ----------
+.erreur {
+  padding-block: clamp(3rem, 8vw, 6rem); display: grid; gap: 2.5rem; align-items: center;
+  h1 { .titre-serre(@titre-page; 1.04); margin-bottom: 1.25rem; }
+  .medaillon { width: clamp(110px, 18vw, 180px); }
+  .liens-suite { margin: 1.5rem 0; max-width: 28rem; }
+}
+@media (min-width: @r-760) {
+  .erreur { grid-template-columns: minmax(0, 1fr) auto; gap: 4rem; }
+}

@@ -1,0 +1,52 @@
+// =====================================================================
+// LISTE D'ARTICLES ET CARTE ÉPINGLÉE
+//   Blog et page Articles : .liste-articles > .carte-article (image + texte)
+//   Accueil « À lire » : .articles > .article (texte seul, le premier en grand : .article-une)
+//   Fin d'article « À lire aussi » : .articles-lies
+// Même date, même titre, même résumé partout.
+// =====================================================================
+
+// ---------- Éléments communs à toutes les cartes ----------
+.carte-article__meta, .article-meta { .meta-article(); margin-bottom: 0.4rem; }
+.carte-article__titre, .texte .carte-article__titre, .article h3 { // .texte : plus fort que les h3 de la colonne de lecture
+  .titre(@titre-carte; @interligne-serre); margin: 0 0 0.45rem;
+  a { text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; transition: text-decoration-color @transition; }
+  a:hover, a:focus-visible { text-decoration-color: @laiton; }
+}
+.carte-article p:last-child, .article p:last-child { margin-bottom: 0; color: @ardoise; }
+
+// ---------- Blog et page Articles ----------
+.liste-articles { list-style: none; padding: 0 !important; margin: 0; }
+.texte .liste-articles > li { padding-left: 0; margin: 0; }
+.texte .liste-articles > li::before { display: none; }
+.carte-article {
+  display: grid; gap: 1rem; padding: 1.6rem 0; border-top: 1px solid @filet;
+  &:last-child { border-bottom: 1px solid @filet; }
+  &:first-child { padding-top: 0; border-top: 0; }
+}
+.carte-article__image img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+@media (min-width: @r-700) {
+  .carte-article { grid-template-columns: 12.5rem 1fr; gap: 1.8rem; align-items: start; }
+}
+
+// article épinglé (« À lire en premier »)
+.badge-epingle {
+  display: inline-block; margin-right: 0.6rem; padding: 0.15rem 0.55rem; border-radius: 2px; vertical-align: 0.1em;
+  background: @moutarde; color: @nuit; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.carte-article--epingle { background: @platre; padding-inline: 1.2rem; border-left: 3px solid @moutarde; }
+
+// ---------- Accueil « À lire » ----------
+.articles { list-style: none; margin: 0; padding: 0; }
+.article {
+  padding: 1.4rem 0; border-top: 1px solid @filet-fort;
+  &:last-child { border-bottom: 1px solid @filet-fort; }
+  p:last-child { margin: 0; max-width: 40em; }
+}
+.article-une h3 { font-size: @titre-encart; }
+
+// ---------- Fin d'article « À lire aussi » ----------
+.articles-lies__titre {
+  .titre(@intertitre; 1.12); margin: 0 0 1.25rem; padding-top: 1.25rem; position: relative;
+  &::before { content: ""; position: absolute; top: 0; left: 0; .fil-de-points(); }
+}

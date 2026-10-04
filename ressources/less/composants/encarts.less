@@ -1,0 +1,123 @@
+// =====================================================================
+// ENCARTS : tous sur le même modèle (fond plâtre, filet moutarde en haut, même marge intérieure),
+// avec ou sans coin de lignes parallèles du tableau.
+//   .encart-plein   le modèle (utilisable tel quel dans le HTML)
+//   .encart-coin    ajoute le coin de lignes en haut à droite
+// Les encarts existants héritent de ces deux classes (:extend), sans recopier leurs styles.
+// =====================================================================
+
+.encart-plein { .encart-fond(); }
+.encart-coin { .coin-lignes(); }
+
+.rdv:extend(.encart-plein) {}
+.appel:extend(.encart-plein) {}
+.appel:extend(.encart-coin all) {}
+.encart--rdv:extend(.encart-plein) {}
+.encart--rdv:extend(.encart-coin all) {}
+.apres-article:extend(.encart-plein) {}
+.apres-article:extend(.encart-coin all) {}
+.fiche:extend(.encart-plein) {}
+.fiche:extend(.encart-coin all) {}
+.prdv-encart:extend(.encart-plein) {}
+.prdv-carte:extend(.encart-plein) {}
+.prdv-appel:extend(.encart-coin all) {}
+.encart-horaires:extend(.encart-plein) {}
+
+// Titres, numéros et notes dans les encarts : mêmes tailles partout
+.encart-titre, .rdv-titre, .prdv-carte__titre, .apres-article__titre { .titre(@titre-encart; 1.15); margin: 0 0 0.75rem; }
+.encart-telephone, .rdv-tel, .apres-article__tel, .appel__tel {
+  .titre(@titre-telephone);
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; text-decoration-color: @laiton; text-decoration-thickness: 1px; }
+}
+.encart-note, .rdv-note, .appel__note { font-size: @taille-note; color: @ardoise; margin: 0; }
+
+// ---------- Prendre rendez-vous (bas de l'accueil) ----------
+.rdv {
+  display: grid; gap: 0.5rem 2.5rem;
+  p { margin-bottom: 0.6rem; }
+  .bouton { margin: 0.25rem 0 0.5rem; }
+}
+@media (min-width: @r-900) {
+  .rdv { grid-column: 1 / -1; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; }
+  .rdv-titre { margin: 0; }
+  .rdv-corps p { margin-bottom: 0.2rem; }
+  .rdv-action { text-align: left; }
+  .rdv-action .rdv-note { max-width: 22em; }
+}
+
+// ---------- Appeler (ancienne page Contact) ----------
+.appel {
+  margin: 0 0 2rem;
+  .actions { margin-top: 1rem; }
+}
+.appel__titre { margin: 0 0 0.5rem; }
+.appel__adresse { .titre(1.3rem; 1.3); margin: 0 0 0.25rem; }
+.appel__tel { margin: 0 0 1rem; }
+.appel__note { margin-top: 1rem; }
+
+// ---------- Fin d'article : prendre rendez-vous ----------
+.apres-article {
+  .apres-article__tel { margin: 0.25rem 0 0.75rem; }
+  p:last-child { margin-bottom: 0; }
+}
+
+// ---------- Fiche « En pratique » (accueil) ----------
+.fiche {
+  .chiffres-cles { margin-bottom: 1.5rem; }
+  p:last-child { margin: 0; }
+}
+.fiche-notes {
+  margin: 0 0 1.5rem; padding: 0; list-style: none; font-size: @taille-petit; line-height: 1.55; color: @ardoise;
+  li { padding-left: 1rem; position: relative; margin-bottom: 0.6rem; }
+  li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.45rem; height: 1px; background: @laiton; }
+}
+
+// ---------- Encarts de Prendre rendez-vous ----------
+.prdv-encart, .prdv-carte { position: relative; overflow: hidden; }
+.prdv-encart > :last-child { margin-bottom: 0; }
+.prdv-appel { container-type: inline-size; }
+.prdv-appel__tel {
+  // le numéro remplit l'encart et tient toujours sur une ligne
+  font-family: @police-titre; font-size: ~"min(3rem, 13cqi)"; line-height: 1.05; font-variant-numeric: lining-nums; margin: 0 0 1.25rem;
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: @laiton; }
+}
+.prdv-appel__action { margin: 0; }
+
+// ---------- Barre latérale des pages ----------
+.encart {
+  font-size: 0.95rem; line-height: 1.6;
+  p { margin-bottom: 0.7rem; }
+}
+.encart__titre { .titre(@titre-3; 1.15); margin-bottom: 0.6rem; }
+.encart--portrait {
+  p { color: @ardoise; }
+  .encart__portrait { margin: 0 0 1.1rem; max-width: 15rem; position: relative; }
+  .encart__portrait img { position: relative; z-index: 1; }
+  .encart__portrait::before { // chêne clair derrière le portrait, comme sur l'accueil
+    content: ""; position: absolute; right: -0.75rem; top: -0.75rem; width: 60%; height: 55%; background: @chene; opacity: .5;
+  }
+}
+.encart__tel {
+  .titre(@titre-telephone-etroit; 1.15); margin: 0.4rem 0 0.8rem;
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+.encart--rdv address { font-size: @taille-note; color: @ardoise; margin: 0.6rem 0 0; }
+.encart--certifications {
+  padding-top: 1.25rem; border-top: 1px solid @laiton;
+  ul { list-style: none; padding: 0; margin: 0 0 1rem; }
+  li { padding: 0.55rem 0; border-bottom: 1px solid @filet; color: @ardoise; font-size: 0.9rem; line-height: 1.45; }
+  li strong { display: block; color: @nuit; font-size: 0.95rem; }
+}
+.encart__label { margin: 0; width: 6.5rem; }
+
+// ---------- Coordonnées (ancienne page Contact) ----------
+.coordonnees {
+  dl { .liste-filets(@filet; 0.8rem 0); margin: 1.5rem 0; max-width: 36rem; }
+  dt { .etiquette(); }
+  dd { margin: 0.15rem 0 0; }
+  address { margin: 0; }
+}
+.coordonnees__tel { .titre(@titre-3; 1.68); text-decoration: none; &:hover { text-decoration: underline; } }

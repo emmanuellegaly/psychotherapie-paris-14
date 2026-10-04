@@ -1,0 +1,46 @@
+// =====================================================================
+// FORMULAIRE DE CONTACT (fragment formulaire-contact.html)
+//   version normale, et version compacte dans l'encart « M'écrire » (.prdv-ecrire).
+// =====================================================================
+
+.formulaire { max-width: 36rem; }
+.formulaire__aide { font-size: @taille-note; color: @ardoise; }
+.formulaire__piege { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.formulaire__mention { font-size: @taille-mention; color: @ardoise; }
+.champs-duo { display: grid; gap: 0 1rem; }
+.champ { margin-bottom: 1.25rem; }
+.champ label { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+.champ input, .champ textarea {
+  display: block; width: 100%; font: inherit; color: @nuit; background: @blanc-pur;
+  border: 1px solid @bordure-champ; border-radius: 0; padding: 0.7rem 0.85rem; min-height: 2.9rem;
+}
+.champ textarea { resize: vertical; min-height: 9rem; }
+.champ input:focus-visible, .champ textarea:focus-visible { outline: 2px solid @nuit; outline-offset: 1px; border-color: @nuit; }
+.champ [aria-invalid="true"] { border-color: @brun-rouge; border-width: 2px; }
+.champ__note { font-size: @taille-note; color: @ardoise; margin: 0.45rem 0 0; }
+.champ__erreur { font-size: 0.9rem; font-weight: 600; color: @brun-rouge; margin: 0.4rem 0 0; }
+@media (min-width: @r-560) {
+  .champs-duo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+// ---------- Version compacte (encart « M'écrire ») ----------
+.prdv-ecrire {
+  .formulaire { max-width: none; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.5rem; align-items: center; }
+  .formulaire > * { grid-column: 1 / -1; }
+  .formulaire__aide { font-size: 0.85rem; margin: -0.3rem 0 0.8rem; }
+  .champ { margin-bottom: 0.75rem; }
+  .champ label { font-size: @taille-petit; line-height: 1.35; margin-bottom: 0.25rem; }
+  .champ input, .champ textarea { padding: 0.5rem 0.75rem; min-height: 2.6rem; }
+  .champ textarea { min-height: 0; line-height: 1.45; }
+  .champ__note { font-size: @taille-mention; line-height: 1.4; margin-top: 0.3rem; }
+  .formulaire__envoi { margin: 0.6rem 0 0; }
+  .formulaire__mention { font-size: 0.8rem; line-height: 1.45; margin: 0.75rem 0 0; }
+}
+@media (min-width: @r-560) {
+  .prdv-ecrire {
+    // l'aide « Tous les champs… » se range à droite du titre de l'encart, sur sa ligne
+    .formulaire__aide { position: absolute; right: @encart-marge; top: @encart-marge; margin: 0; line-height: calc(@titre-encart * 1.15); }
+    .formulaire__envoi { grid-column: 1; }
+    .formulaire__mention { grid-column: 2; margin: 0.6rem 0 0; max-width: 30em; }
+  }
+}
