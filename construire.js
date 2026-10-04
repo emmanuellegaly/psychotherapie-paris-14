@@ -180,13 +180,16 @@ function extrait(a) {
   const mots = texteSeul(a.corps).split(' ');
   return mots.slice(0, 32).join(' ') + (mots.length > 32 ? '…' : '');
 }
+// Article épinglé (champ « epingle: oui ») : toujours en tête des listes, avec la mention « À lire en premier »
+function estEpingle(a) { return a.meta.epingle === 'oui' ? 1 : 0; }
+const MENTION_EPINGLE = '<span class="badge-epingle">À lire en premier</span>';
 function listeArticles(liste, avecExtrait) {
   return '<ul class="liste-articles">\n' + liste.map(a => {
     const img = a.meta.image ? balisesImage(a.meta.image, { alt: '', tailles: '(min-width: 700px) 240px, 100vw' }) : '';
-    return `<li class="carte-article">
+    return `<li class="carte-article${estEpingle(a) ? ' carte-article--epingle' : ''}">
   ${img ? `<div class="carte-article__image">${img}</div>` : ''}
   <div class="carte-article__texte">
-    <p class="carte-article__meta"><time datetime="${a.meta.date}">${dateLongue(a.meta.date)}</time>${a.meta.categories ? ' · ' + echapper(a.meta.categories) : ''}</p>
+    <p class="carte-article__meta">${estEpingle(a) ? MENTION_EPINGLE : ''}<time datetime="${a.meta.date}">${dateLongue(a.meta.date)}</time>${a.meta.categories ? ' · ' + echapper(a.meta.categories) : ''}</p>
     <h3 class="carte-article__titre"><a href="${a.meta.chemin}">${echapper(a.meta.titre)}</a></h3>
     ${avecExtrait ? `<p>${echapper(extrait(a))}</p>` : ''}
   </div>
@@ -199,7 +202,7 @@ function articlesAccueil(liste) {
   return '<ol class="articles apparait">\n' + liste.map((a, i) => {
     const cat = (a.meta.categories || '').split(',')[0].trim();
     return `<li class="article${i === 0 ? ' article-une' : ''}">
-  <p class="article-meta"><time datetime="${a.meta.date}">${dateLongue(a.meta.date)}</time>${cat ? ' · ' + echapper(cat) : ''}</p>
+  <p class="article-meta">${estEpingle(a) ? MENTION_EPINGLE : ''}<time datetime="${a.meta.date}">${dateLongue(a.meta.date)}</time>${cat ? ' · ' + echapper(cat) : ''}</p>
   <h3><a href="${a.meta.chemin}">${echapper(a.meta.titre)}</a></h3>
   <p>${echapper(a.meta.extrait || a.meta.description || extrait(a))}</p>
 </li>`;
@@ -270,6 +273,9 @@ function construirePage(src, type) {
   let principal;
   if (g === 'accueil' || g === 'erreur') {
     principal = corps;
+  } else if (g === 'libre') {
+    // Page composée librement (titre h1 écrit dans le contenu) : conteneur large du site + fil d'Ariane, sans colonne de lecture
+    principal = `<div class="page enveloppe page--libre${m.format ? ' page--' + echapper(m.format) : ''}">\n  ${fil.html}\n${corps}\n</div>`;
   } else {
     const minutes = tempsLecture(corps);
     const enTeteArticle = g === 'article'
@@ -397,7 +403,7 @@ function construire() {
   copierDossier(path.join(RESSOURCES, 'racine'), SORTIE);
 
   articles = listerSources('articles').filter(a => a.meta.statut !== 'brouillon')
-    .sort((a, b) => b.meta.date.localeCompare(a.meta.date) || Number(b.meta.ordre || 0) - Number(a.meta.ordre || 0));  // ordre : départage deux articles du même jour (le plus grand en premier)
+    .sort((a, b) => (estEpingle(b) - estEpingle(a)) || b.meta.date.localeCompare(a.meta.date) || Number(b.meta.ordre || 0) - Number(a.meta.ordre || 0));  // épinglé d abord  // ordre : départage deux articles du même jour (le plus grand en premier)
   const pages = listerSources('pages').filter(p => p.meta.statut !== 'brouillon');
 
   const resultats = [];

@@ -607,3 +607,6 @@ a[href^="tel:"] { white-space: nowrap; }
 .arrivee p { margin: 0 0 0.5rem; }
 .arrivee .infos-pratiques { margin: 0; }
 .trajets-piste { position: relative; } /* les textes cachés des trajets restent dans le carrousel (pas de débordement) */
+/* ---------- Article épinglé (« À lire en premier ») ---------- */
+.badge-epingle { display: inline-block; margin-right: 0.6rem; padding: 0.15rem 0.55rem; background: var(--moutarde); color: var(--nuit); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 2px; vertical-align: 0.1em; }
+.carte-article--epingle { background: var(--platre); padding-inline: 1.2rem; border-left: 3px solid var(--moutarde); }
