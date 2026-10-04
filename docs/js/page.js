@@ -131,5 +131,26 @@ document.querySelectorAll('.trajets').forEach(function (bloc) {
     if (e.key === 'ArrowRight') { e.preventDefault(); aller(courant() + 1); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); aller(courant() - 1); }
   });
+  // Défilement automatique toutes les 5 s : en pause au survol, au clavier, hors écran ou onglet caché ;
+  // il s'arrête définitivement dès que la personne choisit elle-même un trajet ; jamais si « réduire les animations ».
+  var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var auto = !reduit, survol = false, visible = true, minuterie = null;
+  function tic() { if (auto && !survol && visible && !document.hidden) aller(courant() + 1); }
+  function stopAuto() { auto = false; clearInterval(minuterie); }
+  if (auto) {
+    minuterie = setInterval(tic, 5000);
+    [bloc].concat(choix).forEach(function (el) {
+      el.addEventListener('mouseenter', function () { survol = true; });
+      el.addEventListener('mouseleave', function () { survol = false; });
+      el.addEventListener('focusin', function () { survol = true; });
+      el.addEventListener('focusout', function () { survol = false; });
+    });
+    bloc.querySelectorAll('.trajets-fleche, .trajets-points button').forEach(function (b) { b.addEventListener('click', stopAuto); });
+    choix.forEach(function (b) { b.addEventListener('click', stopAuto); });
+    piste.addEventListener('touchstart', stopAuto, { passive: true });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(bloc);
+    }
+  }
   var attente; piste.addEventListener('scroll', function () { clearTimeout(attente); attente = setTimeout(maj, 80); });
 });
