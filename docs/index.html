@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/prata-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/albert-sans-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=ddadc3f1">
+<link rel="stylesheet" href="/css/site.css?v=441acd75">
 <link rel="stylesheet" href="/css/accueil.css?v=a871f483">
 <script>
 (function (d, w) {
@@ -42,9 +42,9 @@
   } catch (e) {}
 })(document, window);
 </script>
-<script type="module" src="/js/seuil.js?v=a0edd200"></script>
+<script type="module" src="/js/seuil.js?v=243d0123"></script>
 <script>document.documentElement.classList.add('js');</script>
-<script src="/js/page.js?v=a0edd200" defer></script>
+<script src="/js/page.js?v=243d0123" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://www.psychotherapie-paris-14.fr/#cabinet","name":"Emmanuelle Galy · Cabinet de psychothérapie en Gestalt-thérapie","description":"Psychothérapie individuelle en Gestalt-thérapie pour adultes, en face à face à Paris 14e.","url":"https://www.psychotherapie-paris-14.fr/","telephone":"+33670736639","image":["https://www.psychotherapie-paris-14.fr/images/cabinet-vue-principale-1600.jpg","https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg"],"priceRange":"90 € la séance","address":{"@type":"PostalAddress","streetAddress":"32 rue Rémy Dumoncel","postalCode":"75014","addressLocality":"Paris","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":48.829737,"longitude":2.330915},"areaServed":{"@type":"City","name":"Paris"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:30","closes":"19:00"}],"founder":{"@type":"Person","@id":"https://www.psychotherapie-paris-14.fr/#emmanuelle-galy","name":"Emmanuelle Galy","jobTitle":"Gestalt-thérapeute","url":"https://www.psychotherapie-paris-14.fr/psychotherapeute-paris-14/","image":"https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg","memberOf":[{"@type":"Organization","name":"Fédération Française de Psychothérapie et Psychanalyse (FF2P)"},{"@type":"Organization","name":"Société Française de Gestalt (SFG)"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Certificat Européen de Psychothérapie (CEP)","recognizedBy":{"@type":"Organization","name":"Association Européenne de Psychothérapie (EAP)"}},{"@type":"EducationalOccupationalCredential","name":"Gestalt-thérapeute certifiée","recognizedBy":{"@type":"Organization","name":"École Parisienne de Gestalt (EPG)"}}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://www.psychotherapie-paris-14.fr/#site","url":"https://www.psychotherapie-paris-14.fr/","name":"Psychothérapeute, Paris 14ème, Gestalt-thérapie","inLanguage":"fr-FR","publisher":{"@id":"https://www.psychotherapie-paris-14.fr/#emmanuelle-galy"}}</script>
 </head>
@@ -348,13 +348,19 @@
   <h2 id="t-venir" class="titre-grand">Venir au cabinet</h2>
   <address class="venir-adresse">32 rue Rémy Dumoncel, 75014 Paris</address>
   <h3 class="venir-sous-titre">Accès</h3>
-  <div class="acces-principal">
-    <p class="acces-ligne"><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
-      <span><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (260&nbsp;m) : l’accès le plus rapide</span></span></p>
-  </div>
-  <ul class="acces-autres" aria-label="Autres possibilités">
-    <li><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span> <span>Alésia · ligne 4 <span class="acces-detail-inline">à 4&nbsp;min à pied (350&nbsp;m)</span></span></li>
-    <li><span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span> <span>Denfert-Rochereau · RER B <span class="acces-detail-inline">à 8&nbsp;min à pied (600&nbsp;m)</span></span></li>
+  <ul class="acces-liste" aria-label="Choisir une station pour afficher le trajet">
+    <li><button class="acces-choix" type="button" data-trajet="0" aria-controls="trajet-mouton" aria-pressed="true">
+      <span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+      <span class="acces-texte"><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (260&nbsp;m) : l’accès le plus rapide</span></span>
+    </button></li>
+    <li><button class="acces-choix" type="button" data-trajet="1" aria-controls="trajet-alesia" aria-pressed="false">
+      <span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+      <span class="acces-texte"><strong>Alésia</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (350&nbsp;m)</span></span>
+    </button></li>
+    <li><button class="acces-choix" type="button" data-trajet="2" aria-controls="trajet-denfert" aria-pressed="false">
+      <span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span>
+      <span class="acces-texte"><strong>Denfert-Rochereau</strong><span class="acces-detail">RER B. À 8&nbsp;min à pied (600&nbsp;m)</span></span>
+    </button></li>
   </ul>
   <dl class="venir-infos">
     <div><dt>Consultations</dt><dd>Du lundi au vendredi de 8h30 à 19h00</dd></div>

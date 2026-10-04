@@ -2,13 +2,19 @@
   <h2 id="t-venir" class="titre-grand">Venir au cabinet</h2>
   <address class="venir-adresse">{{site.adresse}}, {{site.code_postal}} {{site.ville}}</address>
   <h3 class="venir-sous-titre">Accès</h3>
-  <div class="acces-principal">
-    <p class="acces-ligne"><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
-      <span><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (260&nbsp;m) : l’accès le plus rapide</span></span></p>
-  </div>
-  <ul class="acces-autres" aria-label="Autres possibilités">
-    <li><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span> <span>Alésia · ligne 4 <span class="acces-detail-inline">à 4&nbsp;min à pied (350&nbsp;m)</span></span></li>
-    <li><span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span> <span>Denfert-Rochereau · RER B <span class="acces-detail-inline">à 8&nbsp;min à pied (600&nbsp;m)</span></span></li>
+  <ul class="acces-liste" aria-label="Choisir une station pour afficher le trajet">
+    <li><button class="acces-choix" type="button" data-trajet="0" aria-controls="trajet-mouton" aria-pressed="true">
+      <span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+      <span class="acces-texte"><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (260&nbsp;m) : l’accès le plus rapide</span></span>
+    </button></li>
+    <li><button class="acces-choix" type="button" data-trajet="1" aria-controls="trajet-alesia" aria-pressed="false">
+      <span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+      <span class="acces-texte"><strong>Alésia</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (350&nbsp;m)</span></span>
+    </button></li>
+    <li><button class="acces-choix" type="button" data-trajet="2" aria-controls="trajet-denfert" aria-pressed="false">
+      <span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span>
+      <span class="acces-texte"><strong>Denfert-Rochereau</strong><span class="acces-detail">RER B. À 8&nbsp;min à pied (600&nbsp;m)</span></span>
+    </button></li>
   </ul>
   <dl class="venir-infos">
     <div><dt>Consultations</dt><dd>Du lundi au vendredi de 8h30 à 19h00</dd></div>

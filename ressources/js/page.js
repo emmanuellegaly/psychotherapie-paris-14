@@ -105,10 +105,17 @@ document.querySelectorAll('.trajets').forEach(function (bloc) {
     i = (i + diapos.length) % diapos.length;
     piste.scrollTo({ left: i * piste.clientWidth });
   }
+  // la liste des stations (à gauche) suit le carrousel et le pilote
+  var section = bloc.closest('section, .venir, .contact-grille, main') || document;
+  var choix = Array.prototype.slice.call(section.querySelectorAll('.acces-choix'));
   function maj() {
     var i = courant();
     onglets.forEach(function (b, k) { b.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    choix.forEach(function (b, k) { b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
   }
+  choix.forEach(function (b) {
+    b.addEventListener('click', function () { aller(Number(b.getAttribute('data-trajet'))); });
+  });
   bloc.querySelectorAll('.trajets-fleche').forEach(function (b) {
     b.addEventListener('click', function () { aller(courant() + Number(b.getAttribute('data-sens'))); });
   });
