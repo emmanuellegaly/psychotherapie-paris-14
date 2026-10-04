@@ -639,6 +639,7 @@ a[href^="tel:"] { white-space: nowrap; }
 
 /* ---------- Page « Prendre rendez-vous » : appeler et écrire côte à côte ---------- */
 .page--rdv { padding-top: 0.9rem; }
+.page--rdv .texte { max-width: none; } /* conteneur large centré du site, pas la colonne de lecture */
 .page--rdv .fil-ariane { margin-bottom: 0.75rem; }
 .page--rdv .page-entete h1 { font-size: clamp(2rem, 1.5rem + 1.6vw, 2.6rem); }
 #ecrire, #venir { scroll-margin-top: 5.5rem; }
@@ -649,7 +650,7 @@ a[href^="tel:"] { white-space: nowrap; }
 .rdv-page .appel { margin: 0; }
 .encart-ecrire { grid-area: ecrire; }
 .rdv-premier { grid-area: premier; display: flow-root; }
-@media (min-width: 960px) {
+@media (min-width: 900px) {
   .rdv-page {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-rows: auto 1fr;
     grid-template-areas: "appel ecrire" "premier ecrire"; column-gap: clamp(2rem, 4vw, 3.5rem); row-gap: 2rem; align-items: start;
@@ -682,12 +683,9 @@ a[href^="tel:"] { white-space: nowrap; }
 /* Venir : horaires et arrivée côte à côte */
 .venir--arrivee .encart-horaires { grid-column: auto; justify-self: stretch; max-width: none; margin: 0; padding: 1.1rem 1.5rem; }
 @media (min-width: 900px) {
-  .venir--arrivee { grid-template-rows: auto auto 1fr; row-gap: 1rem; }
-  .venir--arrivee .venir-texte { grid-column: 1; grid-row: 1; }
-  .venir--arrivee .trajets { grid-column: 2; grid-row: 1 / span 3; align-self: start; }
-  .venir--arrivee .encart-horaires { grid-column: 1; grid-row: 2; }
-  .venir--arrivee .arrivee { grid-column: 1; grid-row: 3; align-self: start; }
-  .venir--arrivee .acces-liste { margin-bottom: 0.5rem; }
+  .venir--arrivee { row-gap: 1.5rem; }
+  .venir--arrivee .encart-horaires { grid-column: 1; display: flex; flex-direction: column; justify-content: center; }
+  .venir--arrivee .arrivee { grid-column: 2; }
 }
 .arrivee { background: var(--platre); border-top: 2px solid var(--moutarde); padding: 1.1rem 1.5rem; }
 .texte .arrivee__titre, .arrivee__titre { margin: 0 0 0.4rem; font-family: var(--texte); font-style: normal; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laiton-texte); }
