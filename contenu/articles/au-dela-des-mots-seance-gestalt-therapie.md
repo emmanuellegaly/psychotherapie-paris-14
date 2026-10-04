@@ -47,4 +47,4 @@ Dans un cadre sûr et bienveillant la séance peut enfin leur permettre de trouv
 
 C’est cela pour moi la Gestalt-thérapie : une thérapie du contact. Contact avec ce que vous vivez, ici et maintenant ; contact avec vos émotions et votre corps ; contact avec une autre personne qui vous écoute, vous répond et s’engage avec vous.
 
-Si vous vous reconnaissez dans cette façon de travailler vous pouvez m’appeler au [06 70 73 66 39](tel:+33670736639) ou remplir le [formulaire de contact](/psychotherapie-paris-14eme-75014/#ecrire). Le premier rendez-vous est avant tout un temps de rencontre.
+Si vous vous reconnaissez dans cette façon de travailler vous pouvez m’appeler au [06 70 73 66 39](tel:+33670736639) ou remplir le [formulaire de contact](/prise-de-rendez-vous-en-ligne/#ecrire). Le premier rendez-vous est avant tout un temps de rencontre.
