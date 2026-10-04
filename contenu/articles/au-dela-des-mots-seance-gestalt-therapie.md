@@ -33,7 +33,7 @@ Au fil de ma pratique je me sens de plus en plus proche des personnes que j’ac
 
 ## Chercher ensemble ce qui est juste
 
-Ce que je propose n’est jamais une recette. Je peux avoir une intuition de ce dont vous auriez besoin ; nous l’essayons ensemble. Si ce n’est pas juste pour vous nous ajustons.
+Ce que je propose n’est jamais une recette. Vous vous exprimez, votre corps s’exprime aussi, et parfois je me sens appelée à vous rejoindre. Nous l’essayons ensemble. Si ce n’est pas juste pour vous nous ajustons.
 
 C’est dans cet ajustement pas à pas que le travail avance. Vous restez au centre : c’est votre rythme, votre expérience, votre façon de faire qui comptent.
 
