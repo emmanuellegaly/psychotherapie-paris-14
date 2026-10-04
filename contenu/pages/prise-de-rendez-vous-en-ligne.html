@@ -7,39 +7,108 @@ chemin: /prise-de-rendez-vous-en-ligne/
 date: 2021-07-11
 modifie: 2026-10-04
 id_wordpress: 1717
-barre_laterale: non
+gabarit: libre
 format: rdv
 ---
 
-<div class="rdv-page">
-  <div class="rdv-page__appel">
-    [[inclure appel]]
-  </div>
-  <section class="encart-ecrire" id="ecrire" aria-labelledby="t-ecrire">
-    <h2 id="t-ecrire">M’écrire</h2>
+<!-- Page composée en trois temps : prendre contact (appeler ou écrire, à égalité), le premier rendez-vous, venir au cabinet.
+     Gabarit « libre » : conteneur large du site, grille propre à cette page (styles « prdv » dans site.css). -->
+
+<!-- 1. Prendre contact : le titre et l'appel à gauche, le formulaire à droite, dès le premier écran -->
+<div class="prdv-ouverture">
+  <header class="prdv-entete">
+    <h1>Prendre rendez-vous</h1>
+  </header>
+
+  <section class="prdv-carte prdv-appel" aria-labelledby="t-appeler">
+    <h2 class="prdv-carte__titre" id="t-appeler">M’appeler</h2>
+    <p class="prdv-appel__tel"><a href="{{site.telephone_lien}}">{{site.telephone}}</a></p>
+    <p class="prdv-appel__action"><a class="bouton" href="{{site.telephone_lien}}">Appeler</a></p>
+  </section>
+
+  <section class="prdv-carte prdv-ecrire" id="ecrire" aria-labelledby="t-ecrire">
+    <h2 class="prdv-carte__titre" id="t-ecrire">M’écrire</h2>
     [[inclure formulaire-contact]]
   </section>
-  <section class="rdv-premier" aria-labelledby="t-premier">
-    [[image nom="cabinet-bibliotheque" alt="La bibliothèque du cabinet" classe="image rdv-premier__photo" tailles="(min-width: 960px) 208px, 40vw"]]
-    <h2 id="t-premier">Le premier rendez-vous</h2>
-    <p>Le <strong>premier rendez-vous</strong> permet de faire connaissance, de comprendre ce qui vous amène et de vous présenter le cadre de la thérapie. C’est également l’occasion de poser toutes les questions que vous souhaitez.</p>
-    <p>Les <strong>trois premières séances</strong> permettent de préciser votre demande et de voir ensemble si la Gestalt-thérapie ainsi que ma façon de travailler vous conviennent.</p>
-    <p><a class="lien-fleche" href="/psychotherapie/">Déroulement, tarif et durée de la thérapie</a></p>
-  </section>
+
+  <div class="prdv-seances">
+    <p class="prdv-sur" id="t-seances">Les séances</p>
+    <dl class="prdv-chiffres" aria-labelledby="t-seances">
+      <div><dt>Fréquence</dt><dd><span class="prdv-chiffre">Une</span> fois par semaine</dd></div>
+      <div><dt>Durée</dt><dd><span class="prdv-chiffre">50</span> minutes</dd></div>
+      <div><dt>Tarif</dt><dd><span class="prdv-chiffre">90</span> € la séance</dd></div>
+    </dl>
+  </div>
 </div>
 
-<section class="section-venir" id="venir" aria-labelledby="t-venir">
-  <div class="venir venir--arrivee">
-    [[inclure venir-acces]]
-    <section class="arrivee apparait" aria-labelledby="t-arrivee">
-      <h3 class="arrivee__titre" id="t-arrivee">À votre arrivée</h3>
-      <p>Un petit espace d’accueil, comme un sas d’arrivée, pour vous poser quelques minutes avant votre séance.</p>
-      <ul class="infos-pratiques" aria-label="Infos pratiques">
-        <li>Salle d’attente</li>
-        <li>Boisson chaude à disposition</li>
-        <li>Toilettes</li>
-        <li>Cabinet en rez-de-chaussée</li>
-      </ul>
-    </section>
+<!-- 2. Le premier rendez-vous : la bibliothèque du cabinet à côté du texte -->
+<section class="prdv-section prdv-premier" aria-labelledby="t-premier">
+  <figure class="prdv-premier__photo apparait">
+    [[img nom="cabinet-bibliotheque" alt="La bibliothèque en chêne du cabinet, garnie de livres, près d’un fauteuil blanc." tailles="(min-width: 940px) 300px, (min-width: 700px) 34vw, 40vw"]]
+  </figure>
+  <div class="prdv-premier__titre">
+    <p class="prdv-repere" aria-hidden="true"><span>Commencer</span></p>
+    <h2 class="prdv-titre" id="t-premier">Le premier rendez-vous</h2>
   </div>
+  <div class="prdv-premier__texte">
+    <div class="prdv-etapes">
+      <p>Le <strong>premier rendez-vous</strong> permet de faire connaissance, de comprendre ce qui vous amène et de vous présenter le cadre de la thérapie. C’est également l’occasion de poser toutes les questions que vous souhaitez.</p>
+      <p>Les <strong>trois premières séances</strong> permettent de préciser votre demande et de voir ensemble si la Gestalt-thérapie ainsi que ma façon de travailler vous conviennent.</p>
+    </div>
+    <p class="prdv-premier__lien"><a class="lien-fleche" href="/psychotherapie/">Déroulement, tarif et durée de la thérapie</a></p>
+  </div>
+</section>
+
+<!-- 3. Venir au cabinet : la liste des stations pilote le carrousel des plans (page.js) -->
+<section class="prdv-section prdv-venir" id="venir" aria-labelledby="t-venir">
+  <div class="prdv-venir__infos">
+    <p class="prdv-repere" aria-hidden="true"><span>Venir</span></p>
+    <h2 class="prdv-titre" id="t-venir">Venir au cabinet</h2>
+    <address class="prdv-adresse">{{site.adresse}}, {{site.code_postal}} {{site.ville}}</address>
+    <h3 class="prdv-sur">Accès</h3>
+    <ul class="acces-liste" aria-label="Choisir une station pour afficher le trajet">
+      <li><button class="acces-choix" type="button" data-trajet="0" aria-controls="trajet-mouton" aria-pressed="true">
+        <span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+        <span class="acces-texte"><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (260&nbsp;m) : l’accès le plus rapide</span></span>
+      </button></li>
+      <li><button class="acces-choix" type="button" data-trajet="1" aria-controls="trajet-alesia" aria-pressed="false">
+        <span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span>
+        <span class="acces-texte"><strong>Alésia</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (350&nbsp;m)</span></span>
+      </button></li>
+      <li><button class="acces-choix" type="button" data-trajet="2" aria-controls="trajet-denfert" aria-pressed="false">
+        <span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span>
+        <span class="acces-texte"><strong>Denfert-Rochereau</strong><span class="acces-detail">RER B. À 8&nbsp;min à pied (600&nbsp;m)</span></span>
+      </button></li>
+    </ul>
+  </div>
+
+  <div class="trajets" aria-roledescription="carrousel" aria-label="Trajets à pied jusqu’au cabinet">
+    <div class="trajets-piste" tabindex="0">
+      <figure class="trajet" id="trajet-mouton" role="group" aria-roledescription="trajet" aria-label="Depuis Mouton-Duvernet">
+        <a href="https://www.google.com/maps/dir/?api=1&amp;origin=M%C3%A9tro+Mouton-Duvernet,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener"><img src="/images/plan-acces-mouton-duvernet-1080.webp" width="1080" height="1157" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le métro Mouton-Duvernet jusqu’au cabinet : 4 minutes, 260 mètres"><span class="visuellement-cache"> (itinéraire dans Google Maps, nouvel onglet)</span></a>
+      </figure>
+      <figure class="trajet" id="trajet-alesia" role="group" aria-roledescription="trajet" aria-label="Depuis Alésia">
+        <a href="https://www.google.com/maps/dir/?api=1&amp;origin=M%C3%A9tro+Al%C3%A9sia,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener"><img src="/images/plan-acces-alesia-1057.webp" width="1057" height="1127" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le métro Alésia jusqu’au cabinet : 4 minutes, 350 mètres"><span class="visuellement-cache"> (itinéraire dans Google Maps, nouvel onglet)</span></a>
+      </figure>
+      <figure class="trajet" id="trajet-denfert" role="group" aria-roledescription="trajet" aria-label="Depuis Denfert-Rochereau">
+        <a href="https://www.google.com/maps/dir/?api=1&amp;origin=RER+Denfert-Rochereau,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener"><img src="/images/plan-acces-denfert-rochereau-986.webp" width="986" height="943" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le RER Denfert-Rochereau jusqu’au cabinet : 8 minutes, 600 mètres"><span class="visuellement-cache"> (itinéraire dans Google Maps, nouvel onglet)</span></a>
+      </figure>
+    </div>
+  </div>
+
+  <aside class="prdv-encart prdv-horaires" aria-labelledby="t-horaires">
+    <p class="prdv-sur" id="t-horaires">Consultations</p>
+    <p class="prdv-horaires__texte">Du lundi au vendredi de 8h30 à 19h00</p>
+  </aside>
+
+  <section class="prdv-encart prdv-arrivee" aria-labelledby="t-arrivee">
+    <h3 class="prdv-sur" id="t-arrivee">À votre arrivée</h3>
+    <p>Un petit espace d’accueil, comme un sas d’arrivée, pour vous poser quelques minutes avant votre séance.</p>
+    <ul class="infos-pratiques" aria-label="Infos pratiques">
+      <li>Salle d’attente</li>
+      <li>Boisson chaude à disposition</li>
+      <li>Toilettes</li>
+      <li>Cabinet en rez-de-chaussée</li>
+    </ul>
+  </section>
 </section>

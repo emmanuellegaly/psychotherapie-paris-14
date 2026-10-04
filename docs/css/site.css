@@ -637,60 +637,130 @@ a[href^="tel:"] { white-space: nowrap; }
 .encart-horaires__titre { margin: 0 0 0.35rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laiton-texte); }
 .encart-horaires__texte { margin: 0; font-family: var(--titre); font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem); line-height: 1.25; color: var(--nuit); }
 
-/* ---------- Page « Prendre rendez-vous » : appeler et écrire côte à côte ---------- */
-.page--rdv { padding-top: 0.9rem; }
-.page--rdv .texte { max-width: none; } /* conteneur large centré du site, pas la colonne de lecture */
-.page--rdv .fil-ariane { margin-bottom: 0.75rem; }
-.page--rdv .page-entete h1 { font-size: clamp(2rem, 1.5rem + 1.6vw, 2.6rem); }
+/* ---------- Page « Prendre rendez-vous » (gabarit libre, styles « prdv ») ----------
+   Une seule grille de 12 colonnes pour toute la page, coupée au même endroit (5 | 7) dans chaque section :
+   1. prendre contact (titre, appeler et séances à gauche ; écrire à droite), 2. le premier rendez-vous (photo | texte),
+   3. venir au cabinet (stations | plans ; puis consultations | arrivée). Mobile d'abord ; élargissements à 700 et 940 px. */
+.page--libre { padding-top: clamp(1rem, 2vw, 1.5rem); }
+.page--libre .fil-ariane { margin-bottom: clamp(1rem, 2.4vw, 1.75rem); }
+.page--rdv { --prdv-colonnes: clamp(1.5rem, 3.4vw, 3rem); --prdv-section: clamp(3.5rem, 7vw, 6rem); }
 #ecrire, #venir { scroll-margin-top: 5.5rem; }
-.page--rdv .page-entete { margin-bottom: 1.1rem; }
-.page--rdv .page-entete::after { margin-top: 0.6rem; }
-.rdv-page { display: grid; gap: 1.5rem; margin-bottom: 0; grid-template-areas: "appel" "ecrire" "premier"; }
-.rdv-page__appel { grid-area: appel; }
-.rdv-page .appel { margin: 0; }
-.encart-ecrire { grid-area: ecrire; }
-.rdv-premier { grid-area: premier; display: flow-root; }
-@media (min-width: 900px) {
-  .rdv-page {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-rows: auto 1fr;
-    grid-template-areas: "appel ecrire" "premier ecrire"; column-gap: clamp(2rem, 4vw, 3.5rem); row-gap: 2rem; align-items: start;
-  }
+body:has(.page--rdv) .barre-rdv { display: none; } /* le numéro et le bouton sont déjà en haut de cette page : pas de redite */
+.prdv-sur { margin: 0 0 0.55rem; font-family: var(--texte); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laiton-texte); line-height: 1.4; }
+.prdv-repere { display: flex; align-items: center; gap: 0.9rem; margin: 0 0 0.9rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--laiton-texte); }
+.prdv-repere::before { content: ""; flex: none; width: 2.6rem; height: 4px; background: var(--motif-points); }
+.prdv-titre { font-size: clamp(1.8rem, 1.35rem + 1.6vw, 2.6rem); line-height: 1.1; letter-spacing: -0.005em; margin: 0 0 1.1rem; }
+.prdv-encart { position: relative; background: var(--platre); border-top: 2px solid var(--moutarde); padding: clamp(1.15rem, 2.2vw, 1.6rem) clamp(1.2rem, 2.4vw, 1.75rem); }
+.prdv-encart > :last-child { margin-bottom: 0; }
+
+/* 1. Prendre contact */
+.prdv-ouverture { display: grid; gap: 1.5rem; grid-template-areas: "entete" "appel" "ecrire" "seances"; }
+.prdv-entete { grid-area: entete; }
+.prdv-entete h1 { font-size: clamp(2.1rem, 1.5rem + 2.4vw, 3.4rem); line-height: 1.06; letter-spacing: -0.01em; }
+.prdv-entete::after { content: ""; display: block; width: 2.6rem; height: 4px; margin-top: 1rem; background: var(--motif-points); }
+.prdv-carte { position: relative; overflow: hidden; background: var(--platre); border-top: 2px solid var(--moutarde); padding: clamp(1.25rem, 2.4vw, 1.75rem); }
+.prdv-carte__titre { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem); line-height: 1.2; margin: 0 0 0.8rem; }
+.prdv-appel { grid-area: appel; }
+.prdv-appel::after { /* coin de lignes parallèles, motif du tableau */
+  content: ""; position: absolute; right: -14px; top: -14px; width: 84px; height: 84px; pointer-events: none;
+  background: var(--motif-lignes); opacity: .25; clip-path: polygon(0 0, 100% 0, 100% 100%);
 }
-/* titres des deux encarts */
-.texte .appel__titre-section, .texte .encart-ecrire h2 {
-  font-size: clamp(1.45rem, 1.25rem + 0.8vw, 1.85rem); line-height: 1.2; margin: 0 0 0.5rem;
-}
-.appel__titre-section + .appel__tel { margin-top: 0.2rem; }
-/* encart du formulaire, compact */
-.encart-ecrire { position: relative; background: var(--platre); border-top: 2px solid var(--moutarde); padding: clamp(1.25rem, 2.5vw, 1.6rem) clamp(1.25rem, 2.5vw, 1.75rem); }
-@media (min-width: 560px) { .encart-ecrire .formulaire__aide { position: absolute; top: clamp(1.25rem, 2.5vw, 1.6rem); right: clamp(1.25rem, 2.5vw, 1.75rem); margin: 0; line-height: 2.2rem; } }
-.encart-ecrire .formulaire { max-width: none; }
-.encart-ecrire .formulaire__aide { font-size: 0.85rem; margin: 0 0 0.8rem; }
+.prdv-appel > * { position: relative; z-index: 1; }
+.prdv-appel { container-type: inline-size; }
+.prdv-appel__tel { font-family: var(--titre); font-size: min(3rem, 13cqi); /* le numéro tient toujours sur une ligne dans l’encart */ line-height: 1.05; font-variant-numeric: lining-nums; margin: 0 0 1.25rem; }
+.prdv-appel__tel a { text-decoration: none; }
+.prdv-appel__tel a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: var(--laiton); }
+.prdv-appel__action { margin: 0; }
+.prdv-appel__action .bouton { min-width: 9rem; }
+.prdv-ecrire { grid-area: ecrire; }
+.prdv-seances { grid-area: seances; }
+.prdv-chiffres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(0.9rem, 2vw, 1.5rem); margin: 0; }
+.prdv-chiffres > div { padding-top: 0.7rem; border-top: 1px solid var(--filet-fort); }
+.prdv-chiffres dt { font-size: 0.8rem; color: var(--ardoise); margin-bottom: 0.15rem; }
+.prdv-chiffres dd { margin: 0; font-size: 0.95rem; line-height: 1.35; }
+.prdv-chiffre { display: block; font-family: var(--titre); font-size: clamp(2.2rem, 1.8rem + 1.4vw, 3rem); line-height: 1.05; font-variant-numeric: lining-nums; }
+
+/* le formulaire, compact */
+.prdv-ecrire .formulaire { max-width: none; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.5rem; align-items: center; }
+.prdv-ecrire .formulaire > * { grid-column: 1 / -1; }
+.prdv-ecrire .formulaire__aide { font-size: 0.85rem; margin: -0.3rem 0 0.8rem; }
 .champs-duo { display: grid; gap: 0 1rem; }
-@media (min-width: 560px) { .champs-duo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
-.encart-ecrire .champ { margin-bottom: 0.7rem; }
-.encart-ecrire .champ label { font-size: 0.92rem; line-height: 1.35; margin-bottom: 0.2rem; }
-.encart-ecrire .champ input, .encart-ecrire .champ textarea { padding: 0.45rem 0.7rem; min-height: 2.5rem; }
-.encart-ecrire .champ textarea { min-height: 0; line-height: 1.4; }
-.encart-ecrire .champ__note { font-size: 0.82rem; line-height: 1.4; margin-top: 0.3rem; }
-.encart-ecrire .formulaire__envoi { margin: 0.9rem 0 0.5rem; }
-.encart-ecrire .formulaire__mention { font-size: 0.78rem; line-height: 1.45; margin: 0; }
-/* premier rendez-vous : la photo à côté du texte */
-.rdv-premier .rdv-premier__photo { float: right; width: 40%; max-width: 13rem; margin: 0.3rem 0 0.8rem 1.5rem; }
-.rdv-premier .rdv-premier__photo img { width: 100%; }
-.texte .rdv-premier h2 { clear: none; margin-top: 0; }
-.rdv-premier p:last-child { margin-bottom: 0; }
-/* Venir : horaires et arrivée côte à côte */
-.venir--arrivee .encart-horaires { grid-column: auto; justify-self: stretch; max-width: none; margin: 0; padding: 1.1rem 1.5rem; }
-@media (min-width: 900px) {
-  .venir--arrivee { row-gap: 1.5rem; }
-  .venir--arrivee .encart-horaires { grid-column: 1; display: flex; flex-direction: column; justify-content: center; }
-  .venir--arrivee .arrivee { grid-column: 2; }
+@media (min-width: 560px) {
+  .champs-duo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .prdv-ecrire .formulaire__aide { position: absolute; right: clamp(1.25rem, 2.4vw, 1.75rem); top: clamp(1.25rem, 2.4vw, 1.75rem); margin: 0; line-height: calc(clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem) * 1.2); }
 }
-.arrivee { background: var(--platre); border-top: 2px solid var(--moutarde); padding: 1.1rem 1.5rem; }
-.texte .arrivee__titre, .arrivee__titre { margin: 0 0 0.4rem; font-family: var(--texte); font-style: normal; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laiton-texte); }
-.arrivee p { margin: 0 0 0.5rem; }
-.arrivee .infos-pratiques { margin: 0; }
+.prdv-ecrire .champ { margin-bottom: 0.75rem; }
+.prdv-ecrire .champ label { font-size: 0.92rem; line-height: 1.35; margin-bottom: 0.25rem; }
+.prdv-ecrire .champ input, .prdv-ecrire .champ textarea { padding: 0.5rem 0.75rem; min-height: 2.6rem; }
+.prdv-ecrire .champ textarea { min-height: 0; line-height: 1.45; }
+.prdv-ecrire .champ__note { font-size: 0.82rem; line-height: 1.4; margin-top: 0.3rem; }
+.prdv-ecrire .formulaire__envoi { margin: 0.6rem 0 0; }
+.prdv-ecrire .formulaire__mention { font-size: 0.8rem; line-height: 1.45; margin: 0.75rem 0 0; }
+@media (min-width: 560px) {
+  .prdv-ecrire .formulaire__envoi { grid-column: 1; }
+  .prdv-ecrire .formulaire__mention { grid-column: 2; margin: 0.6rem 0 0; max-width: 30em; }
+}
+
+@media (min-width: 700px) {
+  .prdv-ouverture { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "entete entete" "appel seances" "ecrire ecrire"; column-gap: var(--prdv-colonnes); align-items: end; }
+  .prdv-entete { margin-bottom: 0.25rem; }
+}
+@media (min-width: 940px) {
+  .prdv-ouverture {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto auto 1fr;
+    grid-template-areas: "entete ecrire" "seances ecrire" "appel ecrire"; row-gap: clamp(1.75rem, 2.6vw, 2.25rem); align-items: start;
+  }
+  .prdv-entete { margin: 0; }
+  .prdv-appel { align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+}
+
+/* 2. Le premier rendez-vous */
+.prdv-section { padding-top: var(--prdv-section); }
+.prdv-premier { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-areas: "photo titre" "texte texte"; gap: 1.5rem 1.25rem; align-items: center; }
+.prdv-premier__photo { grid-area: photo; margin: 0; }
+.prdv-premier__photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 60%; }
+.prdv-premier__titre { grid-area: titre; }
+.prdv-premier__titre .prdv-titre { margin: 0; }
+.prdv-premier__texte { grid-area: texte; }
+.prdv-etapes p { margin: 0 0 1rem; padding-top: 0.85rem; border-top: 1px solid var(--filet-fort); }
+.prdv-premier__lien { margin: 0.4rem 0 0; }
+@media (min-width: 700px) {
+  .prdv-premier {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr;
+    grid-template-areas: "photo titre" "photo texte"; column-gap: var(--prdv-colonnes); row-gap: 0; align-items: stretch;
+  }
+  .prdv-premier__photo { position: relative; min-height: 18rem; }
+  .prdv-premier__photo img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+  .prdv-premier__titre .prdv-titre { margin-bottom: 1.1rem; }
+}
+@media (min-width: 940px) {
+  .prdv-premier { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .prdv-etapes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--prdv-colonnes); }
+  .prdv-etapes p { margin-bottom: 1.25rem; }
+}
+
+/* 3. Venir au cabinet */
+.prdv-venir { display: grid; gap: 1.5rem; grid-template-areas: "infos" "trajets" "horaires" "arrivee"; }
+.prdv-venir__infos { grid-area: infos; }
+.prdv-adresse { font-style: normal; font-size: 1.12rem; font-weight: 600; margin: -0.3rem 0 1.5rem; }
+.prdv-venir .acces-liste { margin: 0; }
+.prdv-venir .acces-choix strong, .prdv-venir .acces-choix[aria-pressed="true"] strong { font-size: 1.35rem; } /* pas de saut de mise en page quand le carrousel tourne */
+.prdv-venir .trajets { grid-area: trajets; }
+.prdv-venir .trajet img { aspect-ratio: 4 / 3; object-position: 50% 50%; }
+.prdv-venir #trajet-alesia img { object-position: 50% 88%; }
+.prdv-horaires { grid-area: horaires; }
+.prdv-horaires__texte { margin: 0; font-family: var(--titre); font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem); line-height: 1.25; }
+.prdv-arrivee { grid-area: arrivee; }
+.prdv-arrivee p { margin: 0 0 0.6rem; }
+.prdv-arrivee .infos-pratiques { margin: 0; }
+@media (min-width: 700px) {
+  .prdv-venir { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "infos infos" "trajets trajets" "horaires arrivee"; column-gap: var(--prdv-colonnes); }
+  .prdv-horaires { display: flex; flex-direction: column; justify-content: center; }
+}
+@media (min-width: 940px) {
+  .prdv-venir { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "infos trajets" "arrivee horaires"; row-gap: 1.75rem; }
+  .prdv-venir__infos { align-self: start; }
+}
 .trajets-piste { position: relative; } /* les textes cachés des trajets restent dans le carrousel (pas de débordement) */
 /* ---------- Article épinglé (« À lire en premier ») ---------- */
 .badge-epingle { display: inline-block; margin-right: 0.6rem; padding: 0.15rem 0.55rem; background: var(--moutarde); color: var(--nuit); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 2px; vertical-align: 0.1em; }
