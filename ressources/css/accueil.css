@@ -38,8 +38,9 @@
 .seuil-invitation {
   position: absolute; z-index: 5; left: 0; right: 0; top: 7%;
   margin: 0; text-align: center; pointer-events: none;
-  font-family: var(--titre); font-style: italic; font-size: clamp(1.15rem, 0.9rem + 1vw, 1.6rem);
-  color: var(--nuit); opacity: 0; transition: opacity 1.1s ease;
+  font-family: var(--titre); font-style: normal; font-size: clamp(1.7rem, 1.1rem + 2.4vw, 3rem); line-height: 1.15; letter-spacing: 0.01em;
+  color: var(--nuit); text-shadow: 0 0 22px var(--blanc), 0 0 8px var(--blanc);
+  opacity: 0; transition: opacity 1.1s ease;
 }
 .intro.webgl-pret .seuil-invitation { opacity: 1; }
 .porte-ouverte .seuil-invitation { opacity: 0; transition-duration: .5s; }
