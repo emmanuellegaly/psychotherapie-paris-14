@@ -54,6 +54,8 @@
 .intro.porte-ouverte .seuil-passer { display: none; }
 
 .seuil-bas { position: relative; z-index: 7; }
+/* Pendant l'animation d'ouverture, elle passe au-dessus du bloc de titre (qui chevauche le bas de l'image). */
+.intro .seuil-cadre { z-index: 8; }
 @media (max-width: 899.98px) {
   .seuil-passer { top: 22px; bottom: auto; right: 22px; }
   .seuil-invitation { top: auto; bottom: 4.25rem; }
