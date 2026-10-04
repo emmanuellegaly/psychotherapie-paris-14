@@ -601,3 +601,20 @@ a[href^="tel:"] { white-space: nowrap; }
 .plan-acces a { display: block; }
 .plan-acces img { display: block; width: 100%; height: auto; }
 .plan-acces a:focus-visible { outline: 3px solid var(--nuit); outline-offset: 2px; }
+/* ---------- Carrousel des trajets à pied (Venir) ---------- */
+.trajets { display: grid; gap: 0.8rem; min-width: 0; }
+.trajets-piste { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; border: 1px solid var(--filet-carte); border-radius: 4px; background: var(--platre); scrollbar-width: none; }
+.trajets-piste::-webkit-scrollbar { display: none; }
+.trajets-piste:focus-visible { outline: 3px solid var(--nuit); outline-offset: 2px; }
+.trajet { flex: 0 0 100%; margin: 0; scroll-snap-align: start; display: grid; }
+.trajet a { display: block; }
+.trajet img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+.trajet figcaption { padding: 0.7rem 0.9rem; font-size: 0.92rem; color: var(--ardoise); background: var(--blanc); border-top: 1px solid var(--filet-carte); }
+.trajet figcaption strong { color: var(--nuit); font-weight: 600; }
+.trajets-commandes { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.trajets-fleche { flex: none; width: 2.6rem; height: 2.6rem; border: 1px solid var(--nuit); border-radius: 50%; background: var(--blanc); color: var(--nuit); font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.trajets-fleche:hover, .trajets-fleche:focus-visible { background: var(--nuit); color: var(--blanc); }
+.trajets-points { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
+.trajets-points button { border: 1px solid var(--filet-carte); background: var(--blanc); color: var(--ardoise); border-radius: 999px; padding: 0.3rem 0.75rem; font: inherit; font-size: 0.82rem; cursor: pointer; }
+.trajets-points button[aria-selected="true"] { background: var(--nuit); border-color: var(--nuit); color: var(--blanc); }
+@media (prefers-reduced-motion: reduce) { .trajets-piste { scroll-behavior: auto; } }

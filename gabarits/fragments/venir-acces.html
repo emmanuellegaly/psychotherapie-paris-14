@@ -7,16 +7,35 @@
       <span><strong>Mouton-Duvernet</strong><span class="acces-detail">Métro ligne 4. À 4&nbsp;min à pied (260&nbsp;m) : l’accès le plus rapide</span></span></p>
   </div>
   <ul class="acces-autres" aria-label="Autres possibilités">
-    <li><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span> <span>Alésia · ligne 4 <span class="acces-detail-inline">à 5&nbsp;min à pied (environ 400&nbsp;m)</span></span></li>
-    <li><span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span> <span>Denfert-Rochereau · RER B <span class="acces-detail-inline">à 8&nbsp;min à pied (environ 650&nbsp;m)</span></span></li>
+    <li><span class="picto picto-metro" aria-hidden="true">M</span><span class="picto picto-ligne" aria-hidden="true">4</span> <span>Alésia · ligne 4 <span class="acces-detail-inline">à 4&nbsp;min à pied (350&nbsp;m)</span></span></li>
+    <li><span class="picto picto-rer" aria-hidden="true">RER</span><span class="picto picto-ligne" aria-hidden="true">B</span> <span>Denfert-Rochereau · RER B <span class="acces-detail-inline">à 8&nbsp;min à pied (600&nbsp;m)</span></span></li>
   </ul>
   <dl class="venir-infos">
     <div><dt>Consultations</dt><dd>Du lundi au vendredi de 8h30 à 19h00</dd></div>
   </dl>
 </div>
-<figure class="plan-acces apparait">
-  <a href="https://www.google.com/maps/dir/?api=1&amp;origin=M%C3%A9tro+Mouton-Duvernet,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener">
-    <img src="/images/plan-acces-mouton-duvernet-1061.webp" width="1061" height="1047" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le métro Mouton-Duvernet jusqu’au 32 rue Rémy Dumoncel : 4 minutes, 260 mètres">
-    <span class="visuellement-cache"> (ouvrir le trajet dans Google Maps, nouvel onglet)</span>
-  </a>
-</figure>
+<div class="trajets apparait" aria-roledescription="carrousel" aria-label="Trajets à pied jusqu’au cabinet">
+  <div class="trajets-piste" tabindex="0">
+    <figure class="trajet" id="trajet-mouton" role="group" aria-roledescription="trajet" aria-label="Depuis Mouton-Duvernet">
+      <a href="https://www.google.com/maps/dir/?api=1&amp;origin=M%C3%A9tro+Mouton-Duvernet,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener"><img src="/images/plan-acces-mouton-duvernet-1080.webp" width="1080" height="1157" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le métro Mouton-Duvernet jusqu’au 32 rue Rémy Dumoncel : 4 minutes, 260 mètres"><span class="visuellement-cache"> (ouvrir dans Google Maps, nouvel onglet)</span></a>
+      <figcaption><strong>Depuis Mouton-Duvernet</strong> · métro ligne 4 · 4 min à pied (260 m)</figcaption>
+    </figure>
+    <figure class="trajet" id="trajet-alesia" role="group" aria-roledescription="trajet" aria-label="Depuis Alésia">
+      <a href="https://www.google.com/maps/dir/?api=1&amp;origin=M%C3%A9tro+Al%C3%A9sia,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener"><img src="/images/plan-acces-alesia-1057.webp" width="1057" height="1127" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le métro Alésia jusqu’au 32 rue Rémy Dumoncel : 4 minutes, 350 mètres"><span class="visuellement-cache"> (ouvrir dans Google Maps, nouvel onglet)</span></a>
+      <figcaption><strong>Depuis Alésia</strong> · métro ligne 4 · 4 min à pied (350 m)</figcaption>
+    </figure>
+    <figure class="trajet" id="trajet-denfert" role="group" aria-roledescription="trajet" aria-label="Depuis Denfert-Rochereau">
+      <a href="https://www.google.com/maps/dir/?api=1&amp;origin=RER+Denfert-Rochereau,+Paris&amp;destination=32+rue+R%C3%A9my+Dumoncel,+75014+Paris&amp;travelmode=walking" target="_blank" rel="noopener"><img src="/images/plan-acces-denfert-rochereau-986.webp" width="986" height="943" loading="lazy" decoding="async" alt="Plan du trajet à pied depuis le RER Denfert-Rochereau jusqu’au 32 rue Rémy Dumoncel : 8 minutes, 600 mètres"><span class="visuellement-cache"> (ouvrir dans Google Maps, nouvel onglet)</span></a>
+      <figcaption><strong>Depuis Denfert-Rochereau</strong> · RER B · 8 min à pied (600 m)</figcaption>
+    </figure>
+  </div>
+  <div class="trajets-commandes">
+    <button class="trajets-fleche" type="button" data-sens="-1" aria-label="Trajet précédent">‹</button>
+    <div class="trajets-points" role="tablist" aria-label="Choisir un trajet">
+      <button type="button" role="tab" aria-selected="true" aria-controls="trajet-mouton">Mouton-Duvernet</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="trajet-alesia">Alésia</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="trajet-denfert">Denfert-Rochereau</button>
+    </div>
+    <button class="trajets-fleche" type="button" data-sens="1" aria-label="Trajet suivant">›</button>
+  </div>
+</div>

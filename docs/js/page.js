@@ -93,3 +93,29 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   elements.forEach(function (el) { obs.observe(el); });
 })();
+
+// ---- Carrousel des trajets à pied (section Venir) ----
+document.querySelectorAll('.trajets').forEach(function (bloc) {
+  var piste = bloc.querySelector('.trajets-piste');
+  var diapos = Array.prototype.slice.call(bloc.querySelectorAll('.trajet'));
+  var onglets = Array.prototype.slice.call(bloc.querySelectorAll('.trajets-points button'));
+  if (!piste || !diapos.length) return;
+  function courant() { return Math.round(piste.scrollLeft / piste.clientWidth); }
+  function aller(i) {
+    i = (i + diapos.length) % diapos.length;
+    piste.scrollTo({ left: i * piste.clientWidth });
+  }
+  function maj() {
+    var i = courant();
+    onglets.forEach(function (b, k) { b.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+  }
+  bloc.querySelectorAll('.trajets-fleche').forEach(function (b) {
+    b.addEventListener('click', function () { aller(courant() + Number(b.getAttribute('data-sens'))); });
+  });
+  onglets.forEach(function (b, k) { b.addEventListener('click', function () { aller(k); }); });
+  piste.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); aller(courant() + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); aller(courant() - 1); }
+  });
+  var attente; piste.addEventListener('scroll', function () { clearTimeout(attente); attente = setTimeout(maj, 80); });
+});
