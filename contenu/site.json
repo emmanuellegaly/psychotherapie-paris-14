@@ -32,7 +32,7 @@
     { "titre": "Blog", "chemin": "/blog/" },
     { "titre": "Code de déontologie", "chemin": "/code-de-deontologie-du-gestalt-therapeute/" },
     { "titre": "Prendre rendez-vous", "chemin": "/prise-de-rendez-vous/" },
-    { "titre": "L’EMDR, un outil au sein de la psychothérapie", "chemin": "/emdr/", "discret": true }
+    { "titre": "EMDR et MOSAIC® en psychothérapie", "chemin": "/emdr/" }
   ],
   "presentation": "Riche d'un parcours dans le monde du théâtre et de la formation professionnelle, j'accompagne aujourd'hui des adultes en psychothérapie. Je pratique une thérapie du contact (la Gestalt-thérapie) qui se déroule en face-à-face et dans le dialogue pour vous aider à retrouver un mieux être et une puissance d'action.",
   "jsonld": {
@@ -70,6 +70,7 @@
       "@id": "https://www.psychotherapie-paris-14.fr/#emmanuelle-galy",
       "name": "Emmanuelle Galy",
       "jobTitle": "Gestalt-thérapeute",
+      "knowsAbout": ["Gestalt-thérapie", "EMDR", "Thérapie MOSAIC®"],
       "url": "https://www.psychotherapie-paris-14.fr/psychotherapeute-paris-14/",
       "image": "https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg",
       "memberOf": [
@@ -86,6 +87,11 @@
           "@type": "EducationalOccupationalCredential",
           "name": "Gestalt-thérapeute certifiée",
           "recognizedBy": { "@type": "Organization", "name": "École Parisienne de Gestalt (EPG)" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Praticienne EMDR Humaniste",
+          "recognizedBy": { "@type": "Organization", "name": "Psychothérapie et Formation Bober" }
         }
       ]
     }
