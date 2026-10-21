@@ -77,6 +77,8 @@
 .prdv-encart, .prdv-carte { position: relative; overflow: hidden; }
 .prdv-encart > :last-child { margin-bottom: 0; }
 .prdv-appel { container-type: inline-size; }
+// test de l'agenda en ligne : réservation sous le numéro, séparée par un filet
+.prdv-reserver { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid @filet; p { margin-bottom: 0.5rem; } }
 .prdv-appel__tel {
   // le numéro est lui-même le lien d'appel (pas de bouton en double) ; taille réduite à la demande d'Emmanuelle (2026-10-05)
   .titre(@titre-telephone-etroit; 1.15); font-variant-numeric: lining-nums; margin: 0;

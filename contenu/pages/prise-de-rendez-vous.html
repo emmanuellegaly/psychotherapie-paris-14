@@ -5,7 +5,7 @@ titre_seo: Prendre rendez-vous · Gestalt-thérapie Paris 14
 description: Prendre rendez-vous par téléphone au 06 70 73 66 39 avec Emmanuelle Galy, Gestalt-thérapeute à Paris 14e. Séances individuelles en face à face une fois par semaine.
 chemin: /prise-de-rendez-vous/
 date: 2021-07-11
-modifie: 2026-10-04
+modifie: 2026-10-21
 id_wordpress: 1717
 gabarit: libre
 format: rdv
@@ -25,6 +25,12 @@ format: rdv
     <h2 class="prdv-carte__titre" id="t-appeler">M’appeler</h2>
     <p class="prdv-appel__tel"><a href="{{site.telephone_lien}}" aria-label="Appeler le {{site.telephone}}">{{site.telephone}}</a></p>
     <p class="appel__note">Laissez-moi un message sur mon répondeur, je vous rappellerai.</p>
+    <!-- Test de l'agenda en ligne (décision d'Emmanuelle, 2026-10-21) : bloc affiché une semaine sur deux par page.js -->
+    <div class="prdv-reserver" data-test-agenda hidden>
+      <p class="prdv-sur">Ou réserver en ligne</p>
+      <p><a class="bouton bouton-petit" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0fCp-4U1l33ixHw8q9EmleKS4ygiIp3EoWkWRGzPXouQdX42qG3MeU2eSsfD8VKm4aeEzyCOY7" target="_blank" rel="noopener">Réserver une première séance</a></p>
+      <p class="appel__note">Je vous appellerai pour confirmer le rendez-vous.</p>
+    </div>
   </section>
 
   <section class="prdv-carte prdv-ecrire" id="ecrire" aria-labelledby="t-ecrire">

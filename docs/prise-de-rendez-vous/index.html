@@ -23,9 +23,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/prata-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/albert-sans-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=bce3c4e9">
+<link rel="stylesheet" href="/css/site.css?v=5a926c93">
 <script>document.documentElement.classList.add('js');</script>
-<script src="/js/page.js?v=96f70bc0" defer></script>
+<script src="/js/page.js?v=e824b1fe" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://www.psychotherapie-paris-14.fr/#cabinet","name":"Emmanuelle Galy · Cabinet de psychothérapie en Gestalt-thérapie","description":"Psychothérapie individuelle en Gestalt-thérapie pour adultes, en face à face à Paris 14e.","url":"https://www.psychotherapie-paris-14.fr/","telephone":"+33670736639","image":["https://www.psychotherapie-paris-14.fr/images/cabinet-vue-principale-1600.jpg","https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg"],"priceRange":"90 € la séance","address":{"@type":"PostalAddress","streetAddress":"32 rue Rémy Dumoncel","postalCode":"75014","addressLocality":"Paris","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":48.829737,"longitude":2.330915},"areaServed":{"@type":"City","name":"Paris"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:30","closes":"19:00"}],"founder":{"@type":"Person","@id":"https://www.psychotherapie-paris-14.fr/#emmanuelle-galy","name":"Emmanuelle Galy","jobTitle":"Gestalt-thérapeute","knowsAbout":["Gestalt-thérapie","EMDR","Thérapie MOSAIC®"],"url":"https://www.psychotherapie-paris-14.fr/psychotherapeute-paris-14/","image":"https://www.psychotherapie-paris-14.fr/images/portrait-emmanuelle-galy-1200.jpg","memberOf":[{"@type":"Organization","name":"Fédération Française de Psychothérapie et Psychanalyse (FF2P)"},{"@type":"Organization","name":"Société Française de Gestalt (SFG)"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Certificat Européen de Psychothérapie (CEP)","recognizedBy":{"@type":"Organization","name":"Association Européenne de Psychothérapie (EAP)"}},{"@type":"EducationalOccupationalCredential","name":"Gestalt-thérapeute certifiée","recognizedBy":{"@type":"Organization","name":"École Parisienne de Gestalt (EPG)"}},{"@type":"EducationalOccupationalCredential","name":"Praticienne EMDR Humaniste","recognizedBy":{"@type":"Organization","name":"Psychothérapie et Formation Bober"}}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.psychotherapie-paris-14.fr/"},{"@type":"ListItem","position":2,"name":"Prendre RDV","item":"https://www.psychotherapie-paris-14.fr/prise-de-rendez-vous/"}]}</script>
 </head>
@@ -76,6 +76,11 @@
     <h2 class="prdv-carte__titre" id="t-appeler">M’appeler</h2>
     <p class="prdv-appel__tel"><a href="tel:+33670736639" aria-label="Appeler le 06 70 73 66 39">06 70 73 66 39</a></p>
     <p class="appel__note">Laissez-moi un message sur mon répondeur, je vous rappellerai.</p>
+    <div class="prdv-reserver" data-test-agenda hidden>
+      <p class="prdv-sur">Ou réserver en ligne</p>
+      <p><a class="bouton bouton-petit" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0fCp-4U1l33ixHw8q9EmleKS4ygiIp3EoWkWRGzPXouQdX42qG3MeU2eSsfD8VKm4aeEzyCOY7" target="_blank" rel="noopener">Réserver une première séance</a></p>
+      <p class="appel__note">Je vous appellerai pour confirmer le rendez-vous.</p>
+    </div>
   </section>
 
   <section class="prdv-carte prdv-ecrire" id="ecrire" aria-labelledby="t-ecrire">
@@ -86,6 +91,7 @@
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://www.psychotherapie-paris-14.fr/merci/">
   <input type="hidden" name="_blacklist" value="référencement, referencement, SEO, backlink, netlinking, annuaire, WhatsApp, meilleursdeparis, première page de Google, premiere page de Google, positionnement Google, visibilité sur Google, visibilite sur Google, partenariat commercial, sponsorisé, création de site, refonte de site, prospection, leads">
+  <input type="hidden" name="Test agenda en ligne" value="hors période de test" data-test-agenda-champ>
   <p class="formulaire__piege" aria-hidden="true"><label>Ne pas remplir ce champ <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
   <p class="formulaire__aide">Tous les champs sont obligatoires.</p>
   <div class="champs-duo">
