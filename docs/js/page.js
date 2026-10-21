@@ -155,19 +155,3 @@ document.querySelectorAll('.trajets').forEach(function (bloc) {
   var attente; piste.addEventListener('scroll', function () { clearTimeout(attente); attente = setTimeout(maj, 80); });
 });
 
-
-// ---- Test de l'agenda en ligne (décision d'Emmanuelle, 2026-10-21) ----
-// Du lundi 26 octobre 2026 au lundi 25 janvier 2027 : une semaine sur deux, le bouton de réservation en ligne
-// s'affiche sur la page « Prendre rendez-vous ». Le formulaire de contact indique la semaine (avec ou sans agenda).
-(function () {
-  'use strict';
-  var debut = new Date('2026-10-26T00:00:00+01:00').getTime();
-  var fin = new Date('2027-01-25T00:00:00+01:00').getTime();
-  var maintenant = Date.now();
-  var enTest = maintenant >= debut && maintenant < fin;
-  var avecAgenda = enTest && Math.floor((maintenant - debut) / (7 * 24 * 3600 * 1000)) % 2 === 0;
-  document.querySelectorAll('[data-test-agenda]').forEach(function (el) { el.hidden = !avecAgenda; });
-  document.querySelectorAll('[data-test-agenda-champ]').forEach(function (el) {
-    el.value = !enTest ? 'hors période de test' : (avecAgenda ? 'semaine AVEC agenda en ligne' : 'semaine SANS agenda en ligne');
-  });
-})();
