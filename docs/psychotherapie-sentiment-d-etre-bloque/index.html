@@ -157,6 +157,20 @@
   <p class="pied-mention">© 2026 Emmanuelle Galy · Psychothérapeute à Paris 14e, Gestalt-thérapie · <a href="/mentions-legales/">Mentions légales</a></p>
 </footer>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "58d58e2651b644abb86635595c27c4f4"}'></script>
+<script>
+(function () {
+  try {
+    var choix = new URLSearchParams(location.search).get('ne-pas-compter');
+    if (choix === '1') { localStorage.setItem('ne-pas-compter', '1'); alert('C’est noté : vos visites sur cet appareil ne sont plus comptées dans les statistiques.'); }
+    if (choix === '0') { localStorage.removeItem('ne-pas-compter'); alert('Vos visites sur cet appareil sont de nouveau comptées.'); }
+    if (localStorage.getItem('ne-pas-compter') === '1') return;
+  } catch (e) {}
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  s.setAttribute('data-cf-beacon', '{"token": "58d58e2651b644abb86635595c27c4f4"}');
+  document.body.appendChild(s);
+})();
+</script>
 </body>
 </html>
