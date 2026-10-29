@@ -162,6 +162,7 @@
   try {
     var choix = new URLSearchParams(location.search).get('ne-pas-compter');
     if (choix === '1') { localStorage.setItem('ne-pas-compter', '1'); alert('C’est noté : vos visites sur cet appareil ne sont plus comptées dans les statistiques.'); }
+    if (location.pathname === '/moi/') { localStorage.setItem('ne-pas-compter', '1'); }
     if (choix === '0') { localStorage.removeItem('ne-pas-compter'); alert('Vos visites sur cet appareil sont de nouveau comptées.'); }
     if (localStorage.getItem('ne-pas-compter') === '1') return;
   } catch (e) {}
