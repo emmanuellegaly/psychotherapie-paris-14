@@ -7,8 +7,8 @@ chemin: /au-dela-des-mots-seance-gestalt-therapie/
 date: 2026-10-04
 modifie: 2026-10-04
 categories: Gestalt
-image: tableau-points-lignes
-image_alt: Tableau inspiré de l’art aborigène aux motifs de points et de lignes, dans les tons ocre et moutarde
+image: peinture-soleils-motifs
+image_alt: Peinture aux motifs de soleils, de triangles et de traits en orange, jaune, violet et vert
 ---
 
 Quand on pense à une psychothérapie, on imagine souvent quelqu’un qui parle et quelqu’un qui écoute en silence. En Gestalt-thérapie la séance est une rencontre : nous sommes face à face, nous parlons, je vous réponds. Et ce qui se joue ne passe pas seulement par les mots.
