@@ -7,8 +7,8 @@ chemin: /au-dela-des-mots-seance-gestalt-therapie/
 date: 2026-10-04
 modifie: 2026-10-04
 categories: Gestalt
-image: cabinet-vue-vers-entree
-image_alt: Le cabinet d’Emmanuelle Galy : le canapé moutarde, le fauteuil blanc, la bibliothèque en chêne et la porte d’entrée
+image: tableau-points-lignes
+image_alt: Tableau inspiré de l’art aborigène aux motifs de points et de lignes, dans les tons ocre et moutarde
 ---
 
 Quand on pense à une psychothérapie, on imagine souvent quelqu’un qui parle et quelqu’un qui écoute en silence. En Gestalt-thérapie la séance est une rencontre : nous sommes face à face, nous parlons, je vous réponds. Et ce qui se joue ne passe pas seulement par les mots.
