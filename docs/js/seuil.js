@@ -15,9 +15,7 @@ function terminerIntro() {
   html.classList.add('intro-finie');
 }
 
-const grandEcran = window.matchMedia('(min-width: 900px)').matches; // sur mobile la photo du seuil est masquée
-
-if (cadre && grandEcran && !mouvementReduit.matches && 'WebGLRenderingContext' in window) {
+if (cadre && !mouvementReduit.matches && 'WebGLRenderingContext' in window) {
   demarrer().catch(() => terminerIntro());
 } else {
   terminerIntro();

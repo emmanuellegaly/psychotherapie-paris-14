@@ -127,21 +127,20 @@
   .venir { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem @colonnes; align-items: stretch; }
 }
 
-// ---------- Mobile : présentation d'Emmanuelle Galy d'abord, puis « Ce qui peut vous amener » ----------
-// Sur petit écran l'ordre visuel change (l'ordinateur garde l'ordre de la page) :
-// 1. Rencontrer (portrait en tête)  2. Ce qui peut vous amener  3. Titre et rendez-vous, sans la photo du cabinet
-// 4. S'asseoir (sa photo prend le relais)  5. la suite dans l'ordre habituel.
+// ---------- Mobile : ordre de lecture propre au petit écran (l'ordinateur garde l'ordre de la page) ----------
+// 1. Le seuil : animation d'ouverture, photo du cabinet, « La thérapie du contact en face à face »
+// 2. Rencontrer : portrait et biographie courte   3. Comment se passe une Gestalt-thérapie
+// 4. À votre arrivée (photo de l'espace d'accueil)   5. Ce qui peut vous amener   6. la suite dans l'ordre habituel.
 @media (max-width: (@r-900 - @moins)) {
   .page-accueil main { display: flex; flex-direction: column; }
   .page-accueil main > * { order: 10; }
-  .page-accueil main > .chapitre-rencontre { order: 1; padding-top: 1.25rem; }
-  .page-accueil main > .chapitre-amene { order: 2; }
-  .page-accueil main > .seuil { order: 3; padding-top: @espace-section; }
-  .page-accueil main > .chapitre-contact { order: 4; }
+  .page-accueil main > .seuil { order: 1; }
+  .page-accueil main > .chapitre-rencontre { order: 2; }
+  .page-accueil main > .chapitre-rythme { order: 3; }
+  .page-accueil main > .accueil-the { order: 4; margin-top: @espace-section; padding-top: 3rem; }
+  .page-accueil main > .chapitre-amene { order: 5; }
   .rencontre-cote { order: -1; }
   .rencontre-portrait { max-width: 17rem; }
-  .seuil-cadre { display: none; }
-  .seuil-plaque { margin: 0; padding: 1.75rem 0 0; }
-  .seuil-repere li:first-child { display: none; } // la présentation est déjà en tête de page
+  .seuil-repere li:first-child { display: none; } // la présentation suit juste après
   .rencontre-detail { display: none; } // présentation courte : portrait, parcours, lien « Mon parcours et mes formations »
 }
