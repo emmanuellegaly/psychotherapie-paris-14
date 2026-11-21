@@ -15,10 +15,12 @@
 
 // ---------- Ce qui peut vous amener (accueil) ----------
 .liste-titre { .titre(@titre-3; @interligne-serre); margin-bottom: 0.6rem; }
+// Liste à puces : une pastille laiton devant chaque motif, sans filet entre les lignes
 .liste-motifs {
-  margin: 0; .liste-filets(@filet; 0.6rem 0);
-  li { font-size: 1.02rem; }
-  a { font-weight: 600; text-decoration-color: @laiton; .fleche-apres(); }
+  list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem;
+  li { position: relative; padding-left: 1.2rem; font-size: 1.02rem; line-height: 1.5; }
+  li::before { content: ""; position: absolute; left: 0.15rem; top: 0.62em; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: @laiton; }
+  a { font-weight: 600; text-decoration-color: @laiton; text-underline-offset: 0.2em; }
 }
 
 // ---------- Trois mots (accueil) ----------

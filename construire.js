@@ -237,14 +237,15 @@ function scriptJsonLd(obj) {
 
 // ---------- Construction d'une page ----------
 let versionCss = '', versionAccueil = '', versionJs = '';
-// Ouverture animée (respiration) de l'accueil : seulement si le mouvement est accepté, WebGL présent et l'onglet visible.
+// Ouverture animée (respiration) de l'accueil : seulement sur grand écran (sur mobile la photo du seuil est masquée),
+// si le mouvement est accepté, WebGL présent et l'onglet visible.
 // Filet de sécurité par minuterie (indépendant de l'affichage) : quoi qu'il arrive, la photo est là après 4,5 s.
 const SCRIPT_INTRO = `<script>
 (function (d, w) {
   var h = d.documentElement;
   h.classList.add('js');
   try {
-    if (!w.matchMedia('(prefers-reduced-motion: reduce)').matches && 'WebGLRenderingContext' in w && !d.hidden) {
+    if (!w.matchMedia('(prefers-reduced-motion: reduce)').matches && w.matchMedia('(min-width: 900px)').matches && 'WebGLRenderingContext' in w && !d.hidden) {
       h.classList.add('intro');
       var finir = function () {
         if (h.classList.contains('intro')) { h.classList.remove('intro'); h.classList.add('intro-finie', 'porte-ouverte'); }
