@@ -183,6 +183,16 @@ function extrait(a) {
   const mots = texteSeul(a.corps).split(' ');
   return mots.slice(0, 32).join(' ') + (mots.length > 32 ? '…' : '');
 }
+// Titre affiché (h1, cartes d'articles) : la mention « Entretien avec Emmanuelle Galy » ou « Emmanuelle Galy vous répond »
+// passe sur une ligne à part, plus petite, dans la police du texte. Le titre complet reste tel quel pour le référencement.
+const SUITE_TITRE = /^(.*?)\s+((?:Entretien avec|Emmanuelle Galy vous répond)[^]*)$/;
+function titreAffiche(titre) {
+  const insecable = s => echapper(s).replace(/ ([:?!;])/g, '&nbsp;$1'); // « : » et « ? » ne partent pas seuls à la ligne
+  const m = String(titre).match(SUITE_TITRE);
+  if (!m || !/(Entretien avec Emmanuelle Galy|Emmanuelle Galy vous répond)\.?$/.test(titre)) return insecable(titre);
+  return `${insecable(m[1])} <span class="titre-suite">${insecable(m[2])}</span>`;
+}
+
 // Article épinglé (champ « epingle: oui ») : toujours en tête des listes, avec la mention « À lire en premier »
 function estEpingle(a) { return a.meta.epingle === 'oui' ? 1 : 0; }
 const MENTION_EPINGLE = '<span class="badge-epingle">À lire en premier</span>';
@@ -193,7 +203,7 @@ function listeArticles(liste, avecExtrait) {
   ${img ? `<div class="carte-article__image">${img}</div>` : ''}
   <div class="carte-article__texte">
     <p class="carte-article__meta">${estEpingle(a) ? MENTION_EPINGLE : ''}<time datetime="${a.meta.date}">${dateLongue(a.meta.date)}</time>${a.meta.categories ? ' · ' + echapper(a.meta.categories) : ''}</p>
-    <h3 class="carte-article__titre"><a href="${a.meta.chemin}">${echapper(a.meta.titre)}</a></h3>
+    <h3 class="carte-article__titre"><a href="${a.meta.chemin}">${titreAffiche(a.meta.titre)}</a></h3>
     ${avecExtrait ? `<p>${echapper(extrait(a))}</p>` : ''}
   </div>
 </li>`;
@@ -206,7 +216,7 @@ function articlesAccueil(liste) {
     const cat = (a.meta.categories || '').split(',')[0].trim();
     return `<li class="article${i === 0 ? ' article-une' : ''}">
   <p class="article-meta">${estEpingle(a) ? MENTION_EPINGLE : ''}<time datetime="${a.meta.date}">${dateLongue(a.meta.date)}</time>${cat ? ' · ' + echapper(cat) : ''}</p>
-  <h3><a href="${a.meta.chemin}">${echapper(a.meta.titre)}</a></h3>
+  <h3><a href="${a.meta.chemin}">${titreAffiche(a.meta.titre)}</a></h3>
   <p>${echapper(a.meta.extrait || a.meta.description || extrait(a))}</p>
 </li>`;
   }).join('\n') + '\n</ol>';
@@ -291,7 +301,7 @@ function construirePage(src, type) {
       ? `<figure class="image-une">${balisesImage(m.image, { alt: m.image_alt, prioritaire: true, tailles: '(min-width: 960px) 680px, 100vw' })}</figure>` : '';
     const lateral = m.barre_laterale === 'non' ? '' : raccourcis(remplir(gabarit(m.barre_laterale === 'sans-portrait' ? 'fragments/barre-laterale-sans-portrait.html' : 'fragments/barre-laterale.html'), {}));
     principal = remplir(gabarit('page.html'), {
-      fil_ariane: fil.html, titre: echapper(m.titre), meta_article: enTeteArticle, chapo, image_une: imageUne,
+      fil_ariane: fil.html, titre: titreAffiche(m.titre), meta_article: enTeteArticle, chapo, image_une: imageUne,
       contenu: corps, barre_laterale: lateral, classe: (lateral ? 'avec-barre' : 'sans-barre') + (g === 'article' ? ' page--article' : '') + (m.format ? ' page--' + echapper(m.format) : ''),
       classe_texte: g === 'article' && !m.chapo ? ' texte--chapo-auto' : '',
       suite: g === 'article' ? raccourcis(remplir(gabarit('fragments/apres-article.html'), {})) + '\n' + blocLies : '',
