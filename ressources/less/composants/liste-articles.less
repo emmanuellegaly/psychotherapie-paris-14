@@ -1,7 +1,7 @@
 // =====================================================================
 // LISTE D'ARTICLES ET CARTE ÉPINGLÉE
 //   Blog et page Articles : .liste-articles > .carte-article (image + texte)
-//   Accueil « À lire » : .articles > .article (texte seul, le premier en grand : .article-une)
+//   Accueil « À lire » : .articles > .article (texte seul, tous les titres à la même taille)
 //   Fin d'article « À lire aussi » : .articles-lies
 // Même date, même titre, même résumé partout.
 // =====================================================================
@@ -43,7 +43,7 @@
   &:last-child { border-bottom: 1px solid @filet-fort; }
   p:last-child { margin: 0; max-width: 40em; }
 }
-.article-une h3 { font-size: @titre-encart; }
+// tous les titres à la même taille (le premier n'est plus agrandi)
 
 // ---------- Fin d'article « À lire aussi » ----------
 .articles-lies__titre {
